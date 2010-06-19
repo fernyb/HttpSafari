@@ -1,0 +1,4 @@
+build
+build/*
+HttpSafari.xcodeproj/*.mode1v3
+HttpSafari.xcodeproj/*.pbxuser
