@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'HttpSafari' target in the 'HttpSafari' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
