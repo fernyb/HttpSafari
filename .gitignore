@@ -1,3 +1,4 @@
+.DS_Store
 build
 build/*
 HttpSafari.xcodeproj/*.mode1v3
