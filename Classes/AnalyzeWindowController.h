@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface AnalyzeWindowController : NSWindowController {
-
+@interface AnalyzeWindowController : NSWindowController  {
+  IBOutlet NSTableView * table;
+  NSArray * list;
 }
 
 - (void)showWindow:(id)sender;
