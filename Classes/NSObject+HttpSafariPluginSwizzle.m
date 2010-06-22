@@ -29,7 +29,8 @@
     }
     
     if(isSwizzled) {
-       _objc_flush_caches(targetClass);
+      _objc_flush_caches(targetClass);
+      _objc_flush_caches([self class]);
       
       NSLog(@"Swizzle success!");
       return YES;

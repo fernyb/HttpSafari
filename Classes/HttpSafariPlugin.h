@@ -8,14 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class WebView;
-@class WebDataSource;
+@class AnalyzeWindowController;
+
 
 @interface HttpSafariPlugin : NSObject {
-
+  AnalyzeWindowController * analyzeWindow;
 }
 
 + (HttpSafariPlugin *)sharedInstance;
 - (void)swizzle;
+- (void)installMenu;
+- (void)_openWindow:(id)sender;
+- (void)httpSafariWillSendRequest:(NSNotification *)aNotification;
 
 @end

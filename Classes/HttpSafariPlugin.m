@@ -7,11 +7,10 @@
 //
 
 #import <objc/objc-class.h>
-
 #import "HttpSafariPlugin.h"
 #import "LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.h"
 #import "NSObject+HttpSafariPluginSwizzle.h"
-
+#import "AnalyzeWindowController.h"
 
 
 @implementation HttpSafariPlugin
@@ -35,6 +34,15 @@
   return plugin;
 }
 
+- (id)init
+{
+  self = [super init];
+  if (self != nil) {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(httpSafariWillSendRequest:) name:@"kHttpSafariWillSendRequest" object:nil];
+  }
+  return self;
+}
+
 
 - (void)swizzle
 {   
@@ -44,17 +52,64 @@
   
   if (methodAdded) {
     NSLog(@"LoadProgressMonitor now has new method");
+    [self installMenu];
+  }
+}
+
+- (void)installMenu
+{
+  NSMenuItem * newItem;
+  NSMenu * newMenu;
+  
+  newItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"HttpSafari" action:NULL keyEquivalent:@""];
+  newMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] initWithTitle:@"HttpSafari"];
+  [newItem setSubmenu:newMenu];
+  [newMenu release];
+  
+  NSInteger menuItemCount = [[[NSApp mainMenu] itemArray] count] - 1;
+  [[NSApp mainMenu] insertItem:newItem atIndex:menuItemCount];
+  [newItem release];
+  
+  // Add Items to the menu
+  newItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Open Window" action:NULL keyEquivalent:@""];
+  [newItem setTarget:self];
+  [newItem setAction:@selector(_openWindow:)];
+  
+  // Add MenuItem to the Menu
+  [newMenu addItem:newItem];
+  [newItem release];
+}
+
+- (void)_openWindow:(id)sender
+{
+  if(!analyzeWindow) {
+    analyzeWindow = [[AnalyzeWindowController alloc] init];
   }
   
-  /*
-  [self swizzleClass:NSClassFromString(@"LoadProgressMonitor") 
-      targetSelector:@selector(webView:resource:didFinishLoadingFromDataSource:)
-        withSelector:@selector(httpSafari_webView:resource:didFinishLoadingFromDataSource:)];
-  */
-//  [self swizzleClass:NSClassFromString(@"WebView") 
-//      targetSelector:@selector(setResourceLoadDelegate:) 
-//        withSelector:@selector(httpSafari_setResourceLoadDelegate:)];
+  if([[analyzeWindow window] isVisible] == NO) {
+    [analyzeWindow showWindow:self];
+  }
+}
 
+
+- (void)httpSafariWillSendRequest:(NSNotification *)aNotification
+{
+//  NSURLRequest * request = [aNotification object];
+//  NSLog(@"Header Fields: %@", [request allHTTPHeaderFields]);
+//  NSLog(@"Handle Cookies? %@", [request HTTPShouldHandleCookies] ? @"YES" : @"NO");
+//  NSLog(@"Http Method: %@", [request HTTPMethod]);
+//  for(NSHTTPCookie * cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) 
+//	{
+//		NSLog(@"%@", [cookie domain]);
+//	}
+//  NSLog(@"------------");
+}
+
+
+- (void)dealloc
+{
+  [analyzeWindow release];
+  [super dealloc];
 }
 
 

@@ -15,9 +15,7 @@
 
 - (NSURLRequest *)httpSafari_webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource
 {
-  NSString * URL = [[request URL] absoluteString];
-  NSLog(@"******* Request URL: %@", URL);
-  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:request];
  return [self httpSafari_webView:sender resource:identifier willSendRequest:request redirectResponse:redirectResponse fromDataSource:dataSource];
 }
 
