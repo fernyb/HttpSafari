@@ -20,5 +20,6 @@
 - (void)installMenu;
 - (void)_openWindow:(id)sender;
 - (void)httpSafariWillSendRequest:(NSNotification *)aNotification;
+- (void)httpSafariDidFinishLoadingResource:(NSNotification *)aNotification;
 
 @end

@@ -17,6 +17,6 @@
 
 - (void)showWindow:(id)sender;
 + (NSArray *)tableColumnKeys;
-- (void)logRequest:(NSURLRequest *)request;
+- (void)logRequest:(NSDictionary *)request;
 
 @end

@@ -35,16 +35,9 @@
 }
 
 
-- (void)logRequest:(NSURLRequest *)request
+- (void)logRequest:(NSDictionary *)request
 {
-  NSString * time = @"time";
-  NSString * method = [request HTTPMethod];
-  NSString * url = [[request URL] absoluteString];
-  NSString * type = @"type";
-  
-  NSDictionary * item = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:time, method, url, type, nil]
-                                                      forKeys:[[self class] tableColumnKeys]];
-  [list addObject:item];
+  [list addObject:request];
   [table reloadData];
   
   //  NSLog(@"Header Fields: %@", [request allHTTPHeaderFields]);

@@ -8,13 +8,14 @@
 
 #import <WebKit/WebKit.h>
 #import "LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.h"
+#import "AnalyzeWindowController.h"
 
 
 @implementation NSObject (HttpSafariPluginWebResourceLoadDelegate)
 
 - (NSURLRequest *)httpSafari_webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource
 {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:request];
+  //[[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:request];
  return [self httpSafari_webView:sender resource:identifier willSendRequest:request redirectResponse:redirectResponse fromDataSource:dataSource];
 }
 
@@ -22,18 +23,29 @@
 - (void)httpSafari_webView:(WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(WebDataSource *)dataSource
 {
   if([[identifier className] isEqualToString:@"ResourceProgressEntry"]) {
-    NSURL * url = [identifier URL];
-    NSLog(@"URL: %@", [url absoluteString]);
-    NSLog(@"Status Code: %lu", [identifier statusCode]);
+//    NSLog(@"Status Code: %lu", [identifier statusCode]);
     
     NSMutableURLRequest * request = [dataSource request];
-    NSLog(@"HTTP Method: %@", [request HTTPMethod]);
-    NSLog(@"Request Headers: %@", [request allHTTPHeaderFields]);
-    
     NSURLResponse * response = [dataSource response];
-    NSLog(@"Response Mime Type: %@", [response MIMEType]);
     
-    NSLog(@"------------------");
+//    NSLog(@"HTTP Method: %@", [request HTTPMethod]);
+//    NSLog(@"Request Headers: %@", [request allHTTPHeaderFields]);
+   
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:MM:SS"];
+    
+    NSString * dateString = [formatter stringFromDate:[NSDate date]];
+    [formatter release];
+   
+    NSString * method = [request HTTPMethod];
+    NSString * url    = [[identifier URL] absoluteString];
+    NSString * type   = [response MIMEType];
+    
+    NSDictionary * item = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:dateString, method, url, type, nil] 
+                                                        forKeys:[AnalyzeWindowController tableColumnKeys]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariDidFinishLoadingResource" object:item];
+    [item autorelease];
   }
   
   return [self httpSafari_webView:sender resource:identifier didFinishLoadingFromDataSource:dataSource];

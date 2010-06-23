@@ -39,6 +39,7 @@
   self = [super init];
   if (self != nil) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(httpSafariWillSendRequest:) name:@"kHttpSafariWillSendRequest" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(httpSafariDidFinishLoadingResource:) name:@"kHttpSafariDidFinishLoadingResource" object:nil];
   }
   return self;
 }
@@ -102,6 +103,13 @@
 
 
 - (void)httpSafariWillSendRequest:(NSNotification *)aNotification
+{
+  if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
+    //[analyzeWindow logRequest:[aNotification object]];
+  }
+}
+
+- (void)httpSafariDidFinishLoadingResource:(NSNotification *)aNotification
 {
   if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
     [analyzeWindow logRequest:[aNotification object]];
