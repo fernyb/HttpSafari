@@ -54,7 +54,16 @@
     NSLog(@"LoadProgressMonitor now has new method");
     [self installMenu];
   }
+  
+  methodAdded = [self swizzleClass:NSClassFromString(@"LoadProgressMonitor") 
+      targetSelector:@selector(webView:resource:didFinishLoadingFromDataSource:) 
+        withSelector:@selector(httpSafari_webView:resource:didFinishLoadingFromDataSource:)];
+  
+  if(methodAdded) {
+    NSLog(@"Method Added to LoadProgressMonitor");
+  }
 }
+
 
 - (void)installMenu
 {
@@ -94,15 +103,9 @@
 
 - (void)httpSafariWillSendRequest:(NSNotification *)aNotification
 {
-//  NSURLRequest * request = [aNotification object];
-//  NSLog(@"Header Fields: %@", [request allHTTPHeaderFields]);
-//  NSLog(@"Handle Cookies? %@", [request HTTPShouldHandleCookies] ? @"YES" : @"NO");
-//  NSLog(@"Http Method: %@", [request HTTPMethod]);
-//  for(NSHTTPCookie * cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) 
-//	{
-//		NSLog(@"%@", [cookie domain]);
-//	}
-//  NSLog(@"------------");
+  if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
+    [analyzeWindow logRequest:[aNotification object]];
+  }
 }
 
 

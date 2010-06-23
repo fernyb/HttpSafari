@@ -10,7 +10,9 @@
 #import "Safari.h"
 
 
-//@interface LoadProgressMonitor (HttpSafariPluginWebResourceLoadDelegate)
 @interface NSObject (HttpSafariPluginWebResourceLoadDelegate)
+
+- (NSURLRequest *)httpSafari_webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource;
+- (void)httpSafari_webView:(WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(WebDataSource *)dataSource;
 
 @end

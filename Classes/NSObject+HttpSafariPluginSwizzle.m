@@ -14,11 +14,6 @@
 
 - (BOOL)swizzleClass:(Class)targetClass targetSelector:(SEL)targetSelector withSelector:(SEL)newSelector
 {
-  //IMP newMethodIMP = class_getMethodImplementation([self class], newSelector); 
- // Method newMethod = class_getInstanceMethod([self class], newSelector);
-  
-  //if ( class_addMethod(targetClass, newSelector, newMethodIMP, method_getTypeEncoding(newMethod)) ) {
-    
     NSError * error = nil;
     BOOL isSwizzled = [targetClass jr_swizzleMethod:targetSelector withMethod:newSelector error:&error];
     if(error != nil) {
@@ -33,12 +28,7 @@
       NSLog(@"Swizzle did not happen.");
       return NO;
     }
-    
-//  } else {
-//    NSLog(@"Could Not Add Method to Class: %@ %@", NSStringFromClass(targetClass), NSStringFromSelector(newSelector));
-//    return NO;
-//  }
-  
+
   return YES;
 }
 

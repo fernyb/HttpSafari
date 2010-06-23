@@ -9,11 +9,14 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface AnalyzeWindowController : NSWindowController  {
+@interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> 
+{
   IBOutlet NSTableView * table;
-  NSArray * list;
+  NSMutableArray * list;
 }
 
 - (void)showWindow:(id)sender;
++ (NSArray *)tableColumnKeys;
+- (void)logRequest:(NSURLRequest *)request;
 
 @end
