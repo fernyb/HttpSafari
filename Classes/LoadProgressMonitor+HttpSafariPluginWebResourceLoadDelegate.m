@@ -27,24 +27,27 @@
     
     NSMutableURLRequest * request = [dataSource request];
     NSURLResponse * response = [dataSource response];
-    
-//    NSLog(@"HTTP Method: %@", [request HTTPMethod]);
-//    NSLog(@"Request Headers: %@", [request allHTTPHeaderFields]);
-   
+       
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:MM:SS"];
     
     NSString * dateString = [formatter stringFromDate:[NSDate date]];
     [formatter release];
    
-    NSString * method = [request HTTPMethod];
-    NSString * url    = [[identifier URL] absoluteString];
-    NSString * type   = [response MIMEType];
+    NSMutableDictionary * headers = [NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]];
+    [headers setValue:[NSString stringWithFormat:@"%lu", [identifier statusCode]] forKey:@"status"];
     
+    NSString * method      = [request HTTPMethod];
+    NSString * url         = [[identifier URL] absoluteString];
+    NSString * type        = [response MIMEType];
+   
     NSDictionary * item = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:dateString, method, url, type, nil] 
                                                         forKeys:[AnalyzeWindowController tableColumnKeys]];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariDidFinishLoadingResource" object:item];
+    NSArray * items = [[NSArray alloc] initWithObjects:item, headers, nil];
+   
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariDidFinishLoadingResource" object:items];
+    [items autorelease];
     [item autorelease];
   }
   

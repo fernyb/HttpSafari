@@ -35,8 +35,11 @@
 }
 
 
-- (void)logRequest:(NSDictionary *)request
+- (void)logRequest:(NSArray *)request
 {
+ // NSDictionary * req = [request objectAtIndex:0];
+//  NSDictionary * other = [request objectAtIndex:1];
+  
   [list addObject:request];
   [table reloadData];
   
@@ -65,7 +68,7 @@
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-  NSDictionary * item = [list objectAtIndex:rowIndex];
+  NSDictionary * item = [[list objectAtIndex:rowIndex] objectAtIndex:0];
   return [item objectForKey:[aTableColumn identifier]]; 
 }
 
