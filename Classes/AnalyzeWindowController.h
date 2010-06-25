@@ -12,6 +12,7 @@
 @interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> 
 {
   IBOutlet NSTableView * table;
+  IBOutlet NSTabView * tabview;
   NSMutableArray * list;
 }
 

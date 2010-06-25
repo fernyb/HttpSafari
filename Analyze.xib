@@ -333,13 +333,13 @@
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<object class="NSTabView" id="204752895">
 											<reference key="NSNextResponder" ref="381019196"/>
-											<int key="NSvFlags">12</int>
+											<int key="NSvFlags">18</int>
 											<string key="NSFrame">{{4, -1}, {932, 283}}</string>
 											<reference key="NSSuperview" ref="381019196"/>
 											<object class="NSMutableArray" key="NSTabViewItems">
 												<bool key="EncodedWithXMLCoder">YES</bool>
 												<object class="NSTabViewItem" id="1024889434">
-													<string key="NSIdentifier">1</string>
+													<string key="NSIdentifier">headers</string>
 													<object class="NSView" key="NSView" id="527866228">
 														<reference key="NSNextResponder" ref="204752895"/>
 														<int key="NSvFlags">256</int>
@@ -356,7 +356,7 @@
 													<reference key="NSTabView" ref="204752895"/>
 												</object>
 												<object class="NSTabViewItem" id="670689173">
-													<string key="NSIdentifier">2</string>
+													<string key="NSIdentifier">cookies</string>
 													<object class="NSView" key="NSView" id="450718116">
 														<nil key="NSNextResponder"/>
 														<int key="NSvFlags">256</int>
@@ -367,7 +367,7 @@
 													<reference key="NSTabView" ref="204752895"/>
 												</object>
 												<object class="NSTabViewItem" id="769346985">
-													<string key="NSIdentifier">Item 2</string>
+													<string key="NSIdentifier">query</string>
 													<object class="NSView" key="NSView" id="348126900">
 														<nil key="NSNextResponder"/>
 														<int key="NSvFlags">256</int>
@@ -378,7 +378,7 @@
 													<reference key="NSTabView" ref="204752895"/>
 												</object>
 												<object class="NSTabViewItem" id="345715313">
-													<string key="NSIdentifier">Item 3</string>
+													<string key="NSIdentifier">postdata</string>
 													<object class="NSView" key="NSView" id="249708360">
 														<nil key="NSNextResponder"/>
 														<int key="NSvFlags">256</int>
@@ -389,7 +389,7 @@
 													<reference key="NSTabView" ref="204752895"/>
 												</object>
 												<object class="NSTabViewItem" id="152844113">
-													<string key="NSIdentifier">Item 4</string>
+													<string key="NSIdentifier">content</string>
 													<object class="NSView" key="NSView" id="975716185">
 														<nil key="NSNextResponder"/>
 														<int key="NSvFlags">256</int>
@@ -446,6 +446,14 @@
 						<reference key="destination" ref="915819857"/>
 					</object>
 					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tabview</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="204752895"/>
+					</object>
+					<int key="connectionID">53</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -655,6 +663,9 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
 						<reference key="object" ref="527866228"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="1024889434"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -732,9 +743,9 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{19, 406}, {939, 598}}</string>
+					<string>{{6, 407}, {939, 598}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{19, 406}, {939, 598}}</string>
+					<string>{{6, 407}, {939, 598}}</string>
 					<integer value="1"/>
 					<string>{196, 240}</string>
 					<string>{{202, 428}, {480, 270}}</string>
@@ -774,7 +785,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">31</int>
+			<int key="maxID">53</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -794,14 +805,35 @@
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">table</string>
-						<string key="NS.object.0">NSTableView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>table</string>
+							<string>tabview</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSTableView</string>
+							<string>NSTabView</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">table</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">table</string>
-							<string key="candidateClassName">NSTableView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>table</string>
+							<string>tabview</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">table</string>
+								<string key="candidateClassName">NSTableView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">tabview</string>
+								<string key="candidateClassName">NSTabView</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

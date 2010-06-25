@@ -7,6 +7,7 @@
 //
 
 #import "AnalyzeWindowController.h"
+#import "HeaderViewController.h"
 
 
 @implementation AnalyzeWindowController
@@ -32,6 +33,13 @@
 - (void)showWindow:(id)sender
 {
   [[self window] makeKeyAndOrderFront:sender];
+  
+  NSTabViewItem * tab = [tabview selectedTabViewItem];
+  if([[tab identifier] isEqualToString:@"headers"]) {
+    
+    HeaderViewController * headerviewController = [[[HeaderViewController alloc] init] autorelease];
+    [tab setView:[headerviewController headerview]];
+  }
 }
 
 

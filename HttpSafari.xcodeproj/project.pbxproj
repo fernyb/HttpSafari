@@ -11,6 +11,8 @@
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		C410826D11D075BC003C48E3 /* Analyze.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410826C11D075BC003C48E3 /* Analyze.xib */; };
 		C410827C11D0795A003C48E3 /* AnalyzeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */; };
+		C420876E11D467C2000F9FEB /* HeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C420876D11D467C2000F9FEB /* HeaderViewController.m */; };
+		C420877011D46841000F9FEB /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C420876F11D46841000F9FEB /* HeaderView.xib */; };
 		C45A12DE11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C45A12DD11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m */; };
 		C45A12E111CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C45A12E011CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m */; };
 		C4A2315111CD19C90099F6C9 /* HttpSafariPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A2314E11CD19C90099F6C9 /* HttpSafariPlugin.m */; };
@@ -29,6 +31,9 @@
 		C410826C11D075BC003C48E3 /* Analyze.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Analyze.xib; sourceTree = "<group>"; };
 		C410827A11D0795A003C48E3 /* AnalyzeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeWindowController.h; sourceTree = "<group>"; };
 		C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeWindowController.m; sourceTree = "<group>"; };
+		C420876C11D467C2000F9FEB /* HeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderViewController.h; sourceTree = "<group>"; };
+		C420876D11D467C2000F9FEB /* HeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderViewController.m; sourceTree = "<group>"; };
+		C420876F11D46841000F9FEB /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		C45A12B611CF254800D219C4 /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Safari.h; path = Classes/Safari.h; sourceTree = "<group>"; };
 		C45A12DC11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.h"; sourceTree = "<group>"; };
 		C45A12DD11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m"; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				C410826C11D075BC003C48E3 /* Analyze.xib */,
+				C420876F11D46841000F9FEB /* HeaderView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -135,6 +141,8 @@
 				C45A12E011CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m */,
 				C410827A11D0795A003C48E3 /* AnalyzeWindowController.h */,
 				C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */,
+				C420876C11D467C2000F9FEB /* HeaderViewController.h */,
+				C420876D11D467C2000F9FEB /* HeaderViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				C410826D11D075BC003C48E3 /* Analyze.xib in Resources */,
+				C420877011D46841000F9FEB /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +208,7 @@
 				C45A12DE11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m in Sources */,
 				C45A12E111CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m in Sources */,
 				C410827C11D0795A003C48E3 /* AnalyzeWindowController.m in Sources */,
+				C420876E11D467C2000F9FEB /* HeaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
