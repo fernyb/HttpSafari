@@ -24,7 +24,18 @@
 
 - (void)awakeFromNib
 {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedHeaders:) name:@"kHttpSafariShowRequestHeaders" object:nil];
+  
   // ----
 }
+
+- (void)selectedHeaders:(NSNotification *)aNotification
+{
+  NSDictionary * headers = [aNotification object];
+  for(NSString * aKey in [headers allKeys]) {
+    NSLog(@"%@ => %@", aKey, [headers objectForKey:aKey]);
+  }
+}
+
 
 @end

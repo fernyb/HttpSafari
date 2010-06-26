@@ -14,4 +14,6 @@
 }
 @property(readonly) NSView * headerview;
 
+- (void)selectedHeaders:(NSNotification *)aNotification;
+
 @end

@@ -34,8 +34,10 @@
     NSString * dateString = [formatter stringFromDate:[NSDate date]];
     [formatter release];
    
-    NSMutableDictionary * headers = [NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]];
-    [headers setValue:[NSString stringWithFormat:@"%lu", [identifier statusCode]] forKey:@"status"];
+    NSMutableDictionary * requestHeaders = [[NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]] retain];
+    [requestHeaders setValue:[[request URL] host] forKey:@"Host"];
+    [requestHeaders setValue:[request HTTPMethod] forKey:@"Method"];
+    
     
     NSString * method      = [request HTTPMethod];
     NSString * url         = [[identifier URL] absoluteString];
@@ -44,11 +46,13 @@
     NSDictionary * item = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:dateString, method, url, type, nil] 
                                                         forKeys:[AnalyzeWindowController tableColumnKeys]];
     
-    NSArray * items = [[NSArray alloc] initWithObjects:item, headers, nil];
+    NSArray * items = [[NSArray alloc] initWithObjects:item, requestHeaders, nil];
    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariDidFinishLoadingResource" object:items];
-    [items autorelease];
-    [item autorelease];
+    
+    //[items release];
+    //[item release];
+    //[requestHeaders release];
   }
   
   return [self httpSafari_webView:sender resource:identifier didFinishLoadingFromDataSource:dataSource];

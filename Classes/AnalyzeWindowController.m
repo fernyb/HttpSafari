@@ -27,6 +27,8 @@
   
   [table setDataSource:self];
   [table setDelegate:self];
+  [table setTarget:self];
+  [table setAction:@selector(rowClicked:)];
   [table reloadData];
 }
 
@@ -37,7 +39,10 @@
   NSTabViewItem * tab = [tabview selectedTabViewItem];
   if([[tab identifier] isEqualToString:@"headers"]) {
     
-    HeaderViewController * headerviewController = [[[HeaderViewController alloc] init] autorelease];
+    if(!headerviewController) {
+      headerviewController = [[HeaderViewController alloc] init];
+    }
+    
     [tab setView:[headerviewController headerview]];
   }
 }
@@ -80,9 +85,17 @@
   return [item objectForKey:[aTableColumn identifier]]; 
 }
 
+- (void)rowClicked:(NSTableView *)aTable
+{
+  NSDictionary * reqeust = [[list objectAtIndex:[aTable selectedRow]] objectAtIndex:1];
+ 
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:reqeust];
+}
+
 
 - (void)dealloc
 {
+  [headerviewController release];
   [list release];
   [super dealloc];
 }

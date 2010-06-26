@@ -8,16 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class HeaderViewController;
+
 
 @interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> 
 {
   IBOutlet NSTableView * table;
   IBOutlet NSTabView * tabview;
   NSMutableArray * list;
+  
+  HeaderViewController * headerviewController;
 }
 
 - (void)showWindow:(id)sender;
 + (NSArray *)tableColumnKeys;
 - (void)logRequest:(NSArray *)request;
+- (void)rowClicked:(NSTableView *)aTable;
 
 @end
