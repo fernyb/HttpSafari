@@ -18,11 +18,13 @@
   NSMutableArray * list;
   
   HeaderViewController * headerviewController;
+  NSDictionary * currentRequestHeaders;
 }
 
 - (void)showWindow:(id)sender;
 + (NSArray *)tableColumnKeys;
-- (void)logRequest:(NSArray *)request;
+- (void)setRequestHeaders:(NSDictionary *)headers;
+- (void)logRequest:(NSMutableArray *)request;
 - (void)rowClicked:(NSTableView *)aTable;
 
 @end

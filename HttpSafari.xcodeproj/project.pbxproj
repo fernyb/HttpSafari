@@ -18,6 +18,7 @@
 		C4A2315111CD19C90099F6C9 /* HttpSafariPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A2314E11CD19C90099F6C9 /* HttpSafariPlugin.m */; };
 		C4A2315211CD19C90099F6C9 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A2315011CD19C90099F6C9 /* JRSwizzle.m */; };
 		C4A2317C11CD26F30099F6C9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A2317B11CD26F30099F6C9 /* WebKit.framework */; };
+		C4FD16BD11D6680D003192D8 /* HttpSafariHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD16BC11D6680D003192D8 /* HttpSafariHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		C4A2314F11CD19C90099F6C9 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		C4A2315011CD19C90099F6C9 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		C4A2317B11CD26F30099F6C9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C4FD16BB11D6680D003192D8 /* HttpSafariHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariHeader.h; sourceTree = "<group>"; };
+		C4FD16BC11D6680D003192D8 /* HttpSafariHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariHeader.m; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +146,8 @@
 				C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */,
 				C420876C11D467C2000F9FEB /* HeaderViewController.h */,
 				C420876D11D467C2000F9FEB /* HeaderViewController.m */,
+				C4FD16BB11D6680D003192D8 /* HttpSafariHeader.h */,
+				C4FD16BC11D6680D003192D8 /* HttpSafariHeader.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				C45A12E111CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m in Sources */,
 				C410827C11D0795A003C48E3 /* AnalyzeWindowController.m in Sources */,
 				C420876E11D467C2000F9FEB /* HeaderViewController.m in Sources */,
+				C4FD16BD11D6680D003192D8 /* HttpSafariHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,9 +11,16 @@
 
 @interface HeaderViewController : NSObject {
   IBOutlet NSView * headerview;
+  IBOutlet NSTableView * responseHeadersTable;
+  IBOutlet NSArrayController * responseArrayController;
+  IBOutlet NSArrayController * requestArrayController;
+  
+  NSMutableArray * requestHeaders;
+  NSMutableArray * responseHeaders;
 }
 @property(readonly) NSView * headerview;
 
-- (void)selectedHeaders:(NSNotification *)aNotification;
+- (void)showRequestHeaders:(NSNotification *)aNotification;
+- (void)showResponseHeaders:(NSNotification *)aNotification;
 
 @end

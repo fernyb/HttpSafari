@@ -47,15 +47,21 @@
   }
 }
 
-
-- (void)logRequest:(NSArray *)request
+- (void)setRequestHeaders:(NSDictionary *)headers
 {
- // NSDictionary * req = [request objectAtIndex:0];
-//  NSDictionary * other = [request objectAtIndex:1];
+ if(currentRequestHeaders) {
+   [currentRequestHeaders release], currentRequestHeaders = nil;
+ }
+  currentRequestHeaders = [headers copy];
+}
+
+- (void)logRequest:(NSMutableArray *)request
+{
+  [request addObject:currentRequestHeaders];
   
   [list addObject:request];
   [table reloadData];
-  
+ 
   //  NSLog(@"Header Fields: %@", [request allHTTPHeaderFields]);
   //  NSLog(@"Handle Cookies? %@", [request HTTPShouldHandleCookies] ? @"YES" : @"NO");
   //  NSLog(@"Http Method: %@", [request HTTPMethod]);
@@ -87,14 +93,17 @@
 
 - (void)rowClicked:(NSTableView *)aTable
 {
-  NSDictionary * reqeust = [[list objectAtIndex:[aTable selectedRow]] objectAtIndex:1];
- 
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:reqeust];
+  NSDictionary * response = [[list objectAtIndex:[aTable selectedRow]] objectAtIndex:1];
+  NSDictionary * request = [[list objectAtIndex:[aTable selectedRow]] objectAtIndex:2];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:request];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowResponseHeaders" object:response];
 }
 
 
 - (void)dealloc
 {
+  [currentRequestHeaders release], currentRequestHeaders = nil;
   [headerviewController release];
   [list release];
   [super dealloc];

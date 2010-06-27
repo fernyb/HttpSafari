@@ -63,6 +63,15 @@
   if(methodAdded) {
     NSLog(@"Method Added to LoadProgressMonitor");
   }
+  
+  // ---
+  methodAdded = [self swizzleClass:NSClassFromString(@"LoadProgressMonitor") 
+                    targetSelector:@selector(webView:resource:didReceiveResponse:fromDataSource:) 
+                      withSelector:@selector(httpSafari_webView:resource:didReceiveResponse:fromDataSource:)];
+  
+  if(methodAdded) {
+    NSLog(@"Method Added to LoadProgressMonitor");
+  }
 }
 
 
@@ -105,7 +114,7 @@
 - (void)httpSafariWillSendRequest:(NSNotification *)aNotification
 {
   if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
-    //[analyzeWindow logRequest:[aNotification object]];
+    [analyzeWindow setRequestHeaders:[aNotification object]];
   }
 }
 

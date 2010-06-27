@@ -15,47 +15,55 @@
 
 - (NSURLRequest *)httpSafari_webView:(WebView *)sender resource:(id)identifier willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse fromDataSource:(WebDataSource *)dataSource
 {
-  //[[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:request];
- return [self httpSafari_webView:sender resource:identifier willSendRequest:request redirectResponse:redirectResponse fromDataSource:dataSource];
+  NSURLRequest * res = [self httpSafari_webView:sender resource:identifier willSendRequest:request redirectResponse:redirectResponse fromDataSource:dataSource];
+  if(res) {
+    NSDictionary * headers = [[res allHTTPHeaderFields] copy];
+   
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:headers];
+    [headers autorelease];
+  }
+  
+  return res;
 }
 
 
 - (void)httpSafari_webView:(WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(WebDataSource *)dataSource
+{  
+  return [self httpSafari_webView:sender resource:identifier didFinishLoadingFromDataSource:dataSource];
+}
+
+
+- (void)httpSafari_webView:(WebView *)sender resource:(id)identifier didReceiveResponse:(NSURLResponse *)response fromDataSource:(WebDataSource *)dataSource
 {
-  if([[identifier className] isEqualToString:@"ResourceProgressEntry"]) {
-//    NSLog(@"Status Code: %lu", [identifier statusCode]);
-    
-    NSMutableURLRequest * request = [dataSource request];
-    NSURLResponse * response = [dataSource response];
-       
+  NSHTTPURLResponse * res = (NSHTTPURLResponse *)response;
+ 
+  if([res respondsToSelector:@selector(allHeaderFields)]) {
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:MM:SS"];
     
     NSString * dateString = [formatter stringFromDate:[NSDate date]];
     [formatter release];
-   
-    NSMutableDictionary * requestHeaders = [[NSMutableDictionary dictionaryWithDictionary:[request allHTTPHeaderFields]] retain];
-    [requestHeaders setValue:[[request URL] host] forKey:@"Host"];
-    [requestHeaders setValue:[request HTTPMethod] forKey:@"Method"];
     
+    NSDictionary * responseHeaders = [res allHeaderFields];
+    NSString * method = [[dataSource request] HTTPMethod];
+    NSString * url    = [[identifier URL] absoluteString];
+    NSString * type   = [response MIMEType];
     
-    NSString * method      = [request HTTPMethod];
-    NSString * url         = [[identifier URL] absoluteString];
-    NSString * type        = [response MIMEType];
-   
-    NSDictionary * item = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:dateString, method, url, type, nil] 
+    NSDictionary * tableItem = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:dateString, method, url, type, nil] 
                                                         forKeys:[AnalyzeWindowController tableColumnKeys]];
     
-    NSArray * items = [[NSArray alloc] initWithObjects:item, requestHeaders, nil];
-   
+    NSMutableArray * items = [[NSMutableArray alloc] init];
+    [items addObject:tableItem];
+    [items addObject:responseHeaders];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariDidFinishLoadingResource" object:items];
     
-    //[items release];
-    //[item release];
-    //[requestHeaders release];
+    [items autorelease];
+    [tableItem autorelease];
   }
-  
-  return [self httpSafari_webView:sender resource:identifier didFinishLoadingFromDataSource:dataSource];
+ 
+  [self httpSafari_webView:sender resource:identifier didReceiveResponse:response fromDataSource:dataSource];
 }
+
 
 @end
