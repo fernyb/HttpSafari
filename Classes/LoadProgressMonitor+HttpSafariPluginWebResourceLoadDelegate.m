@@ -18,7 +18,7 @@
   NSURLRequest * res = [self httpSafari_webView:sender resource:identifier willSendRequest:request redirectResponse:redirectResponse fromDataSource:dataSource];
   if(res) {
     NSDictionary * headers = [[res allHTTPHeaderFields] copy];
-   
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:headers];
     [headers autorelease];
   }

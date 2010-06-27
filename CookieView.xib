@@ -856,6 +856,14 @@
 					</object>
 					<int key="connectionID">72</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cookiesReceivedArrayController</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="916967439"/>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1238,7 +1246,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">72</int>
+			<int key="maxID">73</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1250,6 +1258,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cookiesReceivedArrayController</string>
 							<string>cookiesSentArrayController</string>
 							<string>cookieview</string>
 							<string>receivedCookiesTable</string>
@@ -1257,6 +1266,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSArrayController</string>
 							<string>NSArrayController</string>
 							<string>NSView</string>
 							<string>NSTableView</string>
@@ -1267,6 +1277,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cookiesReceivedArrayController</string>
 							<string>cookiesSentArrayController</string>
 							<string>cookieview</string>
 							<string>receivedCookiesTable</string>
@@ -1274,6 +1285,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">cookiesReceivedArrayController</string>
+								<string key="candidateClassName">NSArrayController</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">cookiesSentArrayController</string>
 								<string key="candidateClassName">NSArrayController</string>

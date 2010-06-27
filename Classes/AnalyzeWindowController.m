@@ -65,7 +65,8 @@
     }
     [tabViewItem setView:[cookiesController view]];
     if(currentItem) {
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewCookies" object:[currentItem objectAtIndex:0]];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:[currentItem objectAtIndex:0]];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
     }
   } // end cookies tab
 }
@@ -127,7 +128,8 @@
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:request];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowResponseHeaders" object:response];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewCookies" object:[currentItem objectAtIndex:0]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:[currentItem objectAtIndex:0]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
 }
 
 

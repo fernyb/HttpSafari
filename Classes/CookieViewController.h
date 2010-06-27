@@ -14,6 +14,7 @@
   IBOutlet NSTableView * receivedCookiesTable;
   IBOutlet NSTableView * sentCookiesTable;
   IBOutlet NSArrayController * cookiesSentArrayController;
+  IBOutlet NSArrayController * cookiesReceivedArrayController;
   
   NSMutableArray * cookiesReceived;
   NSMutableArray * cookiesSent;
@@ -21,5 +22,6 @@
 @property(readonly, getter=view) NSView * cookieview;
 
 - (void)showCookies:(NSNotification *)aNotification;
+- (void)showResponseCookies:(NSNotification *)aNotification;
 
 @end
