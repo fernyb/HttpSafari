@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="4"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,7 +45,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSSplitView" id="75960125">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">274</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="NSCustomView" id="182924193">
@@ -526,6 +526,7 @@
 												</object>
 												<string key="NSFrame">{{0, 17}, {932, 111}}</string>
 												<reference key="NSSuperview" ref="799253276"/>
+												<reference key="NSNextKeyView" ref="573169405"/>
 												<reference key="NSDocView" ref="573169405"/>
 												<reference key="NSBGColor" ref="549305229"/>
 												<int key="NScvFlags">4</int>
@@ -560,6 +561,7 @@
 												</object>
 												<string key="NSFrameSize">{932, 17}</string>
 												<reference key="NSSuperview" ref="799253276"/>
+												<reference key="NSNextKeyView" ref="216062142"/>
 												<reference key="NSDocView" ref="216062142"/>
 												<reference key="NSBGColor" ref="549305229"/>
 												<int key="NScvFlags">4</int>
@@ -568,6 +570,7 @@
 										</object>
 										<string key="NSFrameSize">{932, 128}</string>
 										<reference key="NSSuperview" ref="446119600"/>
+										<reference key="NSNextKeyView" ref="411852298"/>
 										<int key="NSsFlags">560</int>
 										<reference key="NSVScroller" ref="246668129"/>
 										<reference key="NSHScroller" ref="266461937"/>
@@ -1189,7 +1192,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{72, 504}, {932, 250}}</string>
+					<string>{{64, 237}, {932, 250}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>

@@ -7,7 +7,7 @@
 //
 
 #import "CookieViewController.h"
-
+#import "HttpSafariCookie.h"
 
 @implementation CookieViewController
 @synthesize cookieview;
@@ -25,8 +25,37 @@
 
 - (void)awakeFromNib
 {
-  NSLog(@"Cookie View Ready!");
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showCookies:) name:@"kHttpSafariViewCookies" object:nil];
 }
+
+- (void)showCookies:(NSNotification *)aNotification
+{
+  [[cookiesSentArrayController content] removeAllObjects];
+  [cookiesSent removeAllObjects];
+   
+  NSDictionary * request = [aNotification object];
+  NSArray * availableCookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:[request objectForKey:@"url"]]];
+  
+  for(NSHTTPCookie * cookie in availableCookies) {
+    HttpSafariCookie * kookie = [[HttpSafariCookie alloc] init];
+    [kookie setName:[cookie name]];
+    [kookie setValue:[cookie value]];
+    [kookie setPath:[cookie path]];
+    [kookie setDomain:[cookie domain]];
+   
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"EEEE MMMM d HH:MM:SS yyyy"];
+   
+    [kookie setExpires:[formatter stringFromDate:[cookie expiresDate]]];
+    [formatter release];
+    
+    [cookiesSent addObject:kookie];
+    [kookie release];
+  }
+  
+  [cookiesSentArrayController setContent:cookiesSent];
+}
+
 
 - (void)dealloc
 {

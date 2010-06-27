@@ -17,6 +17,7 @@
   IBOutlet NSTableView * table;
   IBOutlet NSTabView * tabview;
   NSMutableArray * list;
+  NSArray * currentItem;
   
   HeaderViewController * headerviewController;
   CookieViewController * cookiesController;

@@ -64,7 +64,10 @@
       cookiesController = [[CookieViewController alloc] init];
     }
     [tabViewItem setView:[cookiesController view]];
-  }
+    if(currentItem) {
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewCookies" object:[currentItem objectAtIndex:0]];
+    }
+  } // end cookies tab
 }
 
 
@@ -114,11 +117,17 @@
 
 - (void)rowClicked:(NSTableView *)aTable
 {
-  NSDictionary * response = [[list objectAtIndex:[aTable selectedRow]] objectAtIndex:1];
-  NSDictionary * request = [[list objectAtIndex:[aTable selectedRow]] objectAtIndex:2];
+  if(currentItem) {
+    [currentItem release], currentItem = nil;
+  }
+  currentItem = [[list objectAtIndex:[aTable selectedRow]] retain];
+                 
+  NSDictionary * response = [currentItem objectAtIndex:1];
+  NSDictionary * request  = [currentItem objectAtIndex:2];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:request];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowResponseHeaders" object:response];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewCookies" object:[currentItem objectAtIndex:0]];
 }
 
 
@@ -127,6 +136,7 @@
   [currentRequestHeaders release], currentRequestHeaders = nil;
   [cookiesController release];
   [headerviewController release];
+  [currentItem release];
   [list release];
   [super dealloc];
 }
