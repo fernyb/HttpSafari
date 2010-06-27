@@ -9,22 +9,26 @@
 #import <Cocoa/Cocoa.h>
 
 @class HeaderViewController;
+@class CookieViewController;
 
 
-@interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> 
+@interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate> 
 {
   IBOutlet NSTableView * table;
   IBOutlet NSTabView * tabview;
   NSMutableArray * list;
   
   HeaderViewController * headerviewController;
+  CookieViewController * cookiesController;
   NSDictionary * currentRequestHeaders;
 }
 
 - (void)showWindow:(id)sender;
+- (void)setTabViewIfNeeded:(NSTabViewItem *)tabViewItem;
 + (NSArray *)tableColumnKeys;
 - (void)setRequestHeaders:(NSDictionary *)headers;
 - (void)logRequest:(NSMutableArray *)request;
 - (void)rowClicked:(NSTableView *)aTable;
+
 
 @end

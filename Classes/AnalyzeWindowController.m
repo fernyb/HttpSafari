@@ -8,6 +8,7 @@
 
 #import "AnalyzeWindowController.h"
 #import "HeaderViewController.h"
+#import "CookieViewController.h"
 
 
 @implementation AnalyzeWindowController
@@ -23,6 +24,8 @@
 
 - (void)awakeFromNib
 {
+  [tabview setDelegate:self];
+  
   list = [[NSMutableArray alloc] init];
   
   [table setDataSource:self];
@@ -37,15 +40,33 @@
   [[self window] makeKeyAndOrderFront:sender];
   
   NSTabViewItem * tab = [tabview selectedTabViewItem];
-  if([[tab identifier] isEqualToString:@"headers"]) {
-    
+  [self setTabViewIfNeeded:tab];
+}
+
+
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+  [self setTabViewIfNeeded:tabViewItem];
+}
+
+
+- (void)setTabViewIfNeeded:(NSTabViewItem *)tabViewItem
+{
+  if([[tabViewItem identifier] isEqualToString:@"headers"]) {
     if(!headerviewController) {
       headerviewController = [[HeaderViewController alloc] init];
     }
-    
-    [tab setView:[headerviewController headerview]];
+    [tabViewItem setView:[headerviewController view]];
+  }
+  
+  if([[tabViewItem identifier] isEqualToString:@"cookies"]) {
+    if(!cookiesController) {
+      cookiesController = [[CookieViewController alloc] init];
+    }
+    [tabViewItem setView:[cookiesController view]];
   }
 }
+
 
 - (void)setRequestHeaders:(NSDictionary *)headers
 {
@@ -104,6 +125,7 @@
 - (void)dealloc
 {
   [currentRequestHeaders release], currentRequestHeaders = nil;
+  [cookiesController release];
   [headerviewController release];
   [list release];
   [super dealloc];

@@ -18,7 +18,7 @@
   NSMutableArray * requestHeaders;
   NSMutableArray * responseHeaders;
 }
-@property(readonly) NSView * headerview;
+@property(readonly, getter=view) NSView * headerview;
 
 - (void)showRequestHeaders:(NSNotification *)aNotification;
 - (void)showResponseHeaders:(NSNotification *)aNotification;
