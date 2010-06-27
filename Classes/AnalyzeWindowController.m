@@ -9,7 +9,7 @@
 #import "AnalyzeWindowController.h"
 #import "HeaderViewController.h"
 #import "CookieViewController.h"
-
+#import "QueryViewController.h"
 
 @implementation AnalyzeWindowController
 
@@ -69,6 +69,13 @@
       [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
     }
   } // end cookies tab
+  
+  if([[tabViewItem identifier] isEqualToString:@"query"]) {
+    if(!queryController) {
+      queryController = [[QueryViewController alloc] init];
+    }
+    [tabViewItem setView:[queryController view]];
+  }
 }
 
 
@@ -138,6 +145,7 @@
   [currentRequestHeaders release], currentRequestHeaders = nil;
   [cookiesController release];
   [headerviewController release];
+  [queryController release];
   [currentItem release];
   [list release];
   [super dealloc];

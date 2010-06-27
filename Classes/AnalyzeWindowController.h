@@ -10,7 +10,7 @@
 
 @class HeaderViewController;
 @class CookieViewController;
-
+@class QueryViewController;
 
 @interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate> 
 {
@@ -21,6 +21,7 @@
   
   HeaderViewController * headerviewController;
   CookieViewController * cookiesController;
+  QueryViewController * queryController;
   NSDictionary * currentRequestHeaders;
 }
 

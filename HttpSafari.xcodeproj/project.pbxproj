@@ -11,6 +11,8 @@
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		C410826D11D075BC003C48E3 /* Analyze.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410826C11D075BC003C48E3 /* Analyze.xib */; };
 		C410827C11D0795A003C48E3 /* AnalyzeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */; };
+		C4161E8F11D7E3DB00340BD5 /* QueryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4161E8E11D7E3DB00340BD5 /* QueryView.xib */; };
+		C4161E9411D7E53900340BD5 /* QueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4161E9311D7E53900340BD5 /* QueryViewController.m */; };
 		C420876E11D467C2000F9FEB /* HeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C420876D11D467C2000F9FEB /* HeaderViewController.m */; };
 		C420877011D46841000F9FEB /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C420876F11D46841000F9FEB /* HeaderView.xib */; };
 		C45A12DE11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C45A12DD11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m */; };
@@ -35,6 +37,9 @@
 		C410826C11D075BC003C48E3 /* Analyze.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Analyze.xib; sourceTree = "<group>"; };
 		C410827A11D0795A003C48E3 /* AnalyzeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeWindowController.h; sourceTree = "<group>"; };
 		C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeWindowController.m; sourceTree = "<group>"; };
+		C4161E8E11D7E3DB00340BD5 /* QueryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryView.xib; sourceTree = "<group>"; };
+		C4161E9211D7E53900340BD5 /* QueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryViewController.h; sourceTree = "<group>"; };
+		C4161E9311D7E53900340BD5 /* QueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryViewController.m; sourceTree = "<group>"; };
 		C420876C11D467C2000F9FEB /* HeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderViewController.h; sourceTree = "<group>"; };
 		C420876D11D467C2000F9FEB /* HeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderViewController.m; sourceTree = "<group>"; };
 		C420876F11D46841000F9FEB /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -100,6 +105,7 @@
 				C410826C11D075BC003C48E3 /* Analyze.xib */,
 				C420876F11D46841000F9FEB /* HeaderView.xib */,
 				C49E506711D727AD000DDCAE /* CookieView.xib */,
+				C4161E8E11D7E3DB00340BD5 /* QueryView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -161,6 +167,8 @@
 				C49E506C11D72D2B000DDCAE /* CookieViewController.m */,
 				C49E506E11D72EEB000DDCAE /* HttpSafariCookie.h */,
 				C49E506F11D72EEB000DDCAE /* HttpSafariCookie.m */,
+				C4161E9211D7E53900340BD5 /* QueryViewController.h */,
+				C4161E9311D7E53900340BD5 /* QueryViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 				C410826D11D075BC003C48E3 /* Analyze.xib in Resources */,
 				C420877011D46841000F9FEB /* HeaderView.xib in Resources */,
 				C49E506811D727AD000DDCAE /* CookieView.xib in Resources */,
+				C4161E8F11D7E3DB00340BD5 /* QueryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +240,7 @@
 				C4FD16BD11D6680D003192D8 /* HttpSafariHeader.m in Sources */,
 				C49E506D11D72D2B000DDCAE /* CookieViewController.m in Sources */,
 				C49E507011D72EEB000DDCAE /* HttpSafariCookie.m in Sources */,
+				C4161E9411D7E53900340BD5 /* QueryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
