@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
-		C410826D11D075BC003C48E3 /* Analyze.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410826C11D075BC003C48E3 /* Analyze.xib */; };
 		C410827C11D0795A003C48E3 /* AnalyzeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */; };
-		C4161E8F11D7E3DB00340BD5 /* QueryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4161E8E11D7E3DB00340BD5 /* QueryView.xib */; };
 		C4161E9411D7E53900340BD5 /* QueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4161E9311D7E53900340BD5 /* QueryViewController.m */; };
 		C420876E11D467C2000F9FEB /* HeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C420876D11D467C2000F9FEB /* HeaderViewController.m */; };
-		C420877011D46841000F9FEB /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C420876F11D46841000F9FEB /* HeaderView.xib */; };
+		C425BD8211D851EC000176C4 /* Analyze.xib in Resources */ = {isa = PBXBuildFile; fileRef = C425BD7E11D851EC000176C4 /* Analyze.xib */; };
+		C425BD8311D851EC000176C4 /* CookieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C425BD7F11D851EC000176C4 /* CookieView.xib */; };
+		C425BD8411D851EC000176C4 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C425BD8011D851EC000176C4 /* HeaderView.xib */; };
+		C425BD8511D851EC000176C4 /* QueryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C425BD8111D851EC000176C4 /* QueryView.xib */; };
 		C45A12DE11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C45A12DD11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m */; };
 		C45A12E111CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C45A12E011CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m */; };
-		C49E506811D727AD000DDCAE /* CookieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49E506711D727AD000DDCAE /* CookieView.xib */; };
 		C49E506D11D72D2B000DDCAE /* CookieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C49E506C11D72D2B000DDCAE /* CookieViewController.m */; };
 		C49E507011D72EEB000DDCAE /* HttpSafariCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = C49E506F11D72EEB000DDCAE /* HttpSafariCookie.m */; };
 		C4A2315111CD19C90099F6C9 /* HttpSafariPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A2314E11CD19C90099F6C9 /* HttpSafariPlugin.m */; };
@@ -34,21 +34,21 @@
 		32DBCF630370AF2F00C91783 /* HttpSafari_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafari_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* HttpSafari.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HttpSafari.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C410826C11D075BC003C48E3 /* Analyze.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Analyze.xib; sourceTree = "<group>"; };
 		C410827A11D0795A003C48E3 /* AnalyzeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeWindowController.h; sourceTree = "<group>"; };
 		C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeWindowController.m; sourceTree = "<group>"; };
-		C4161E8E11D7E3DB00340BD5 /* QueryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryView.xib; sourceTree = "<group>"; };
 		C4161E9211D7E53900340BD5 /* QueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryViewController.h; sourceTree = "<group>"; };
 		C4161E9311D7E53900340BD5 /* QueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryViewController.m; sourceTree = "<group>"; };
 		C420876C11D467C2000F9FEB /* HeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderViewController.h; sourceTree = "<group>"; };
 		C420876D11D467C2000F9FEB /* HeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderViewController.m; sourceTree = "<group>"; };
-		C420876F11D46841000F9FEB /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		C425BD7E11D851EC000176C4 /* Analyze.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Analyze.xib; sourceTree = "<group>"; };
+		C425BD7F11D851EC000176C4 /* CookieView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CookieView.xib; sourceTree = "<group>"; };
+		C425BD8011D851EC000176C4 /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		C425BD8111D851EC000176C4 /* QueryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QueryView.xib; sourceTree = "<group>"; };
 		C45A12B611CF254800D219C4 /* Safari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Safari.h; path = Classes/Safari.h; sourceTree = "<group>"; };
 		C45A12DC11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.h"; sourceTree = "<group>"; };
 		C45A12DD11CF2A0600D219C4 /* LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LoadProgressMonitor+HttpSafariPluginWebResourceLoadDelegate.m"; sourceTree = "<group>"; };
 		C45A12DF11CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HttpSafariPluginSwizzle.h"; sourceTree = "<group>"; };
 		C45A12E011CF2ADA00D219C4 /* NSObject+HttpSafariPluginSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HttpSafariPluginSwizzle.m"; sourceTree = "<group>"; };
-		C49E506711D727AD000DDCAE /* CookieView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CookieView.xib; sourceTree = "<group>"; };
 		C49E506B11D72D2B000DDCAE /* CookieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookieViewController.h; sourceTree = "<group>"; };
 		C49E506C11D72D2B000DDCAE /* CookieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieViewController.m; sourceTree = "<group>"; };
 		C49E506E11D72EEB000DDCAE /* HttpSafariCookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariCookie.h; sourceTree = "<group>"; };
@@ -100,12 +100,9 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C425BD7D11D851EC000176C4 /* Views */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
-				C410826C11D075BC003C48E3 /* Analyze.xib */,
-				C420876F11D46841000F9FEB /* HeaderView.xib */,
-				C49E506711D727AD000DDCAE /* CookieView.xib */,
-				C4161E8E11D7E3DB00340BD5 /* QueryView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -144,6 +141,17 @@
 				32DBCF630370AF2F00C91783 /* HttpSafari_Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		C425BD7D11D851EC000176C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C425BD7E11D851EC000176C4 /* Analyze.xib */,
+				C425BD7F11D851EC000176C4 /* CookieView.xib */,
+				C425BD8011D851EC000176C4 /* HeaderView.xib */,
+				C425BD8111D851EC000176C4 /* QueryView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C4A2314C11CD19C90099F6C9 /* Classes */ = {
@@ -217,10 +225,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
-				C410826D11D075BC003C48E3 /* Analyze.xib in Resources */,
-				C420877011D46841000F9FEB /* HeaderView.xib in Resources */,
-				C49E506811D727AD000DDCAE /* CookieView.xib in Resources */,
-				C4161E8F11D7E3DB00340BD5 /* QueryView.xib in Resources */,
+				C425BD8211D851EC000176C4 /* Analyze.xib in Resources */,
+				C425BD8311D851EC000176C4 /* CookieView.xib in Resources */,
+				C425BD8411D851EC000176C4 /* HeaderView.xib in Resources */,
+				C425BD8511D851EC000176C4 /* QueryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
