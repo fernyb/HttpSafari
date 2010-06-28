@@ -23,6 +23,8 @@
 		C4A2315111CD19C90099F6C9 /* HttpSafariPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A2314E11CD19C90099F6C9 /* HttpSafariPlugin.m */; };
 		C4A2315211CD19C90099F6C9 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C4A2315011CD19C90099F6C9 /* JRSwizzle.m */; };
 		C4A2317C11CD26F30099F6C9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A2317B11CD26F30099F6C9 /* WebKit.framework */; };
+		C4D5E7A311D8577700E06AF9 /* NSString+URIQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7A211D8577700E06AF9 /* NSString+URIQuery.m */; };
+		C4D5E7CF11D85E0F00E06AF9 /* HttpSafariQueryParam.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7CE11D85E0F00E06AF9 /* HttpSafariQueryParam.m */; };
 		C4FD16BD11D6680D003192D8 /* HttpSafariHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD16BC11D6680D003192D8 /* HttpSafariHeader.m */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,10 @@
 		C4A2314F11CD19C90099F6C9 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		C4A2315011CD19C90099F6C9 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		C4A2317B11CD26F30099F6C9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C4D5E7A111D8577700E06AF9 /* NSString+URIQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URIQuery.h"; sourceTree = "<group>"; };
+		C4D5E7A211D8577700E06AF9 /* NSString+URIQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URIQuery.m"; sourceTree = "<group>"; };
+		C4D5E7CD11D85E0F00E06AF9 /* HttpSafariQueryParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariQueryParam.h; sourceTree = "<group>"; };
+		C4D5E7CE11D85E0F00E06AF9 /* HttpSafariQueryParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariQueryParam.m; sourceTree = "<group>"; };
 		C4FD16BB11D6680D003192D8 /* HttpSafariHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariHeader.h; sourceTree = "<group>"; };
 		C4FD16BC11D6680D003192D8 /* HttpSafariHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariHeader.m; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -177,6 +183,10 @@
 				C49E506F11D72EEB000DDCAE /* HttpSafariCookie.m */,
 				C4161E9211D7E53900340BD5 /* QueryViewController.h */,
 				C4161E9311D7E53900340BD5 /* QueryViewController.m */,
+				C4D5E7A111D8577700E06AF9 /* NSString+URIQuery.h */,
+				C4D5E7A211D8577700E06AF9 /* NSString+URIQuery.m */,
+				C4D5E7CD11D85E0F00E06AF9 /* HttpSafariQueryParam.h */,
+				C4D5E7CE11D85E0F00E06AF9 /* HttpSafariQueryParam.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -249,6 +259,8 @@
 				C49E506D11D72D2B000DDCAE /* CookieViewController.m in Sources */,
 				C49E507011D72EEB000DDCAE /* HttpSafariCookie.m in Sources */,
 				C4161E9411D7E53900340BD5 /* QueryViewController.m in Sources */,
+				C4D5E7A311D8577700E06AF9 /* NSString+URIQuery.m in Sources */,
+				C4D5E7CF11D85E0F00E06AF9 /* HttpSafariQueryParam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

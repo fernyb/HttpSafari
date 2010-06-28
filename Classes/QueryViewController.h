@@ -11,9 +11,11 @@
 
 @interface QueryViewController : NSObject {
   IBOutlet NSView * queryview;
+  IBOutlet NSArrayController * queryParamsArrayController;
+  NSMutableArray * queryParams;
 }
 @property(readonly, getter=view) NSView * queryview;
 
-
+- (void)showQuery:(NSNotification *)aNotification;
 
 @end

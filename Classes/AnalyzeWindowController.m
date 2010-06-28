@@ -75,6 +75,7 @@
       queryController = [[QueryViewController alloc] init];
     }
     [tabViewItem setView:[queryController view]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewQuery" object:currentItem];
   }
 }
 
@@ -93,15 +94,6 @@
   
   [list addObject:request];
   [table reloadData];
- 
-  //  NSLog(@"Header Fields: %@", [request allHTTPHeaderFields]);
-  //  NSLog(@"Handle Cookies? %@", [request HTTPShouldHandleCookies] ? @"YES" : @"NO");
-  //  NSLog(@"Http Method: %@", [request HTTPMethod]);
-  //  for(NSHTTPCookie * cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) 
-  //	{
-  //		NSLog(@"%@", [cookie domain]);
-  //	}
-  //  NSLog(@"------------");
 }
 
 
@@ -137,6 +129,7 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowResponseHeaders" object:response];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:[currentItem objectAtIndex:0]];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewQuery" object:currentItem];
 }
 
 
