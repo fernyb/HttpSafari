@@ -11,6 +11,7 @@
 #import "CookieViewController.h"
 #import "QueryViewController.h"
 #import "HttpSafariPostDataController.h"
+#import "HttpSafariContentController.h"
 
 
 @implementation AnalyzeWindowController
@@ -86,6 +87,13 @@
     }
     [tabViewItem setView:[postdataController view]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariPostData" object:currentPostData];
+  }
+  
+  if([[tabViewItem identifier] isEqualToString:@"content"]) {
+    if(!contentviewController) {
+      contentviewController = [[HttpSafariContentController alloc] init];
+    }
+    [tabViewItem setView:[contentviewController view]];
   }
 }
 
@@ -167,6 +175,8 @@
   [cookiesController release];
   [headerviewController release];
   [queryController release];
+  [postdataController release];
+  [contentviewController release];
   [currentItem release];
   [list release];
   [postDataList release];

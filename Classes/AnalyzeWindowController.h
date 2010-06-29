@@ -12,6 +12,7 @@
 @class CookieViewController;
 @class QueryViewController;
 @class HttpSafariPostDataController;
+@class HttpSafariContentController;
 
 
 @interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate> 
@@ -26,6 +27,7 @@
   CookieViewController * cookiesController;
   QueryViewController * queryController;
   HttpSafariPostDataController * postdataController;
+  HttpSafariContentController * contentviewController;
   
   NSMutableArray * postDataList;
   
