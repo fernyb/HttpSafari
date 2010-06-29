@@ -11,6 +11,8 @@
 @class HeaderViewController;
 @class CookieViewController;
 @class QueryViewController;
+@class HttpSafariPostDataController;
+
 
 @interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate> 
 {
@@ -18,17 +20,24 @@
   IBOutlet NSTabView * tabview;
   NSMutableArray * list;
   NSArray * currentItem;
+  NSString * currentPostData;
   
   HeaderViewController * headerviewController;
   CookieViewController * cookiesController;
   QueryViewController * queryController;
+  HttpSafariPostDataController * postdataController;
+  
+  NSMutableArray * postDataList;
+  
   NSDictionary * currentRequestHeaders;
+  NSString * postdata;
 }
 
 - (void)showWindow:(id)sender;
 - (void)setTabViewIfNeeded:(NSTabViewItem *)tabViewItem;
 + (NSArray *)tableColumnKeys;
 - (void)setRequestHeaders:(NSDictionary *)headers;
+- (void)setPostData:(NSString *)data;
 - (void)logRequest:(NSMutableArray *)request;
 - (void)rowClicked:(NSTableView *)aTable;
 

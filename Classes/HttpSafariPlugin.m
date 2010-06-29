@@ -114,7 +114,9 @@
 - (void)httpSafariWillSendRequest:(NSNotification *)aNotification
 {
   if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
-    [analyzeWindow setRequestHeaders:[aNotification object]];
+    [analyzeWindow setRequestHeaders:[[aNotification object] objectAtIndex:0]];
+   
+    [analyzeWindow setPostData:[[aNotification object] objectAtIndex:1]];
   }
 }
 

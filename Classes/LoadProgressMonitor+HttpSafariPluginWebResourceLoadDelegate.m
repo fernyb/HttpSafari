@@ -17,10 +17,17 @@
 {
   NSURLRequest * res = [self httpSafari_webView:sender resource:identifier willSendRequest:request redirectResponse:redirectResponse fromDataSource:dataSource];
   if(res) {
+    NSMutableArray * items = [[NSMutableArray alloc] init];
     NSDictionary * headers = [[res allHTTPHeaderFields] copy];
+    [items addObject:headers];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:headers];
+    NSString * data = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
+    [items addObject:data];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariWillSendRequest" object:items];
+    [data autorelease];
     [headers autorelease];
+    [items autorelease];
   }
   
   return res;

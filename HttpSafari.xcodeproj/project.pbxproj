@@ -10,6 +10,8 @@
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		C410827C11D0795A003C48E3 /* AnalyzeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */; };
+		C4140F5C11D9A668006798FF /* HttpSafariPostDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4140F5B11D9A668006798FF /* HttpSafariPostDataController.m */; };
+		C4140F5E11D9A6BE006798FF /* PostDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4140F5D11D9A6BE006798FF /* PostDataView.xib */; };
 		C4161E9411D7E53900340BD5 /* QueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4161E9311D7E53900340BD5 /* QueryViewController.m */; };
 		C420876E11D467C2000F9FEB /* HeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C420876D11D467C2000F9FEB /* HeaderViewController.m */; };
 		C425BD8211D851EC000176C4 /* Analyze.xib in Resources */ = {isa = PBXBuildFile; fileRef = C425BD7E11D851EC000176C4 /* Analyze.xib */; };
@@ -38,6 +40,9 @@
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C410827A11D0795A003C48E3 /* AnalyzeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeWindowController.h; sourceTree = "<group>"; };
 		C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeWindowController.m; sourceTree = "<group>"; };
+		C4140F5A11D9A668006798FF /* HttpSafariPostDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariPostDataController.h; sourceTree = "<group>"; };
+		C4140F5B11D9A668006798FF /* HttpSafariPostDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariPostDataController.m; sourceTree = "<group>"; };
+		C4140F5D11D9A6BE006798FF /* PostDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDataView.xib; sourceTree = "<group>"; };
 		C4161E9211D7E53900340BD5 /* QueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryViewController.h; sourceTree = "<group>"; };
 		C4161E9311D7E53900340BD5 /* QueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryViewController.m; sourceTree = "<group>"; };
 		C420876C11D467C2000F9FEB /* HeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderViewController.h; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 				C425BD7F11D851EC000176C4 /* CookieView.xib */,
 				C425BD8011D851EC000176C4 /* HeaderView.xib */,
 				C425BD8111D851EC000176C4 /* QueryView.xib */,
+				C4140F5D11D9A6BE006798FF /* PostDataView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +193,8 @@
 				C4D5E7A211D8577700E06AF9 /* NSString+URIQuery.m */,
 				C4D5E7CD11D85E0F00E06AF9 /* HttpSafariQueryParam.h */,
 				C4D5E7CE11D85E0F00E06AF9 /* HttpSafariQueryParam.m */,
+				C4140F5A11D9A668006798FF /* HttpSafariPostDataController.h */,
+				C4140F5B11D9A668006798FF /* HttpSafariPostDataController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 				C425BD8311D851EC000176C4 /* CookieView.xib in Resources */,
 				C425BD8411D851EC000176C4 /* HeaderView.xib in Resources */,
 				C425BD8511D851EC000176C4 /* QueryView.xib in Resources */,
+				C4140F5E11D9A6BE006798FF /* PostDataView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +270,7 @@
 				C4161E9411D7E53900340BD5 /* QueryViewController.m in Sources */,
 				C4D5E7A311D8577700E06AF9 /* NSString+URIQuery.m in Sources */,
 				C4D5E7CF11D85E0F00E06AF9 /* HttpSafariQueryParam.m in Sources */,
+				C4140F5C11D9A668006798FF /* HttpSafariPostDataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

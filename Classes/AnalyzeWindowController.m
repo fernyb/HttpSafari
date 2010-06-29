@@ -10,6 +10,8 @@
 #import "HeaderViewController.h"
 #import "CookieViewController.h"
 #import "QueryViewController.h"
+#import "HttpSafariPostDataController.h"
+
 
 @implementation AnalyzeWindowController
 
@@ -77,6 +79,14 @@
     [tabViewItem setView:[queryController view]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewQuery" object:currentItem];
   }
+  
+  if([[tabViewItem identifier] isEqualToString:@"postdata"]) {
+    if(!postdataController) {
+      postdataController = [[HttpSafariPostDataController alloc] init];
+    }
+    [tabViewItem setView:[postdataController view]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariPostData" object:currentPostData];
+  }
 }
 
 
@@ -88,9 +98,22 @@
   currentRequestHeaders = [headers copy];
 }
 
+- (void)setPostData:(NSString *)data
+{
+  if(postdata) {
+    [postdata release], postdata = nil;
+  }
+  if(!postDataList) {
+    postDataList = [[NSMutableArray alloc] init];
+  }
+  postdata = [data copy];
+  [postDataList addObject:postdata];
+}
+
 - (void)logRequest:(NSMutableArray *)request
 {
   [request addObject:currentRequestHeaders];
+  [request addObject:postdata];
   
   [list addObject:request];
   [table reloadData];
@@ -120,8 +143,12 @@
   if(currentItem) {
     [currentItem release], currentItem = nil;
   }
+  if(currentPostData) {
+    [currentPostData release], currentPostData = nil;
+  }
   currentItem = [[list objectAtIndex:[aTable selectedRow]] retain];
-                 
+  currentPostData = [[postDataList objectAtIndex:([aTable selectedRow] + 1)] retain];
+  
   NSDictionary * response = [currentItem objectAtIndex:1];
   NSDictionary * request  = [currentItem objectAtIndex:2];
   
@@ -130,6 +157,7 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:[currentItem objectAtIndex:0]];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewQuery" object:currentItem];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariPostData" object:currentPostData];
 }
 
 
@@ -141,6 +169,7 @@
   [queryController release];
   [currentItem release];
   [list release];
+  [postDataList release];
   [super dealloc];
 }
 
