@@ -23,7 +23,17 @@
 
 - (void)awakeFromNib
 {
-  
+  [textview setEditable:NO];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showContent:) name:@"kHttpSafariShowContent" object:nil]; 
+}
+
+- (void)showContent:(NSNotification *)aNotification
+{
+  if([aNotification object]) {
+    [textview setString:[aNotification object]];
+  } else {
+    [textview setString:@""];
+  }
 }
 
 - (void)dealloc

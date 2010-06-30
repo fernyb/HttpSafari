@@ -15,13 +15,15 @@
 @class HttpSafariContentController;
 
 
-@interface AnalyzeWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate> 
+@interface AnalyzeWindowController : NSWindowController <NSWindowDelegate, NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate> 
 {
   IBOutlet NSTableView * table;
   IBOutlet NSTabView * tabview;
   NSMutableArray * list;
   NSArray * currentItem;
   NSString * currentPostData;
+  NSString * currentContent;
+  NSDictionary * currentRequestHeaders;
   
   HeaderViewController * headerviewController;
   CookieViewController * cookiesController;
@@ -29,17 +31,19 @@
   HttpSafariPostDataController * postdataController;
   HttpSafariContentController * contentviewController;
   
+  NSMutableArray * responseHeadersList;
+  NSMutableArray * requestHeadersList;
   NSMutableArray * postDataList;
-  
-  NSDictionary * currentRequestHeaders;
-  NSString * postdata;
+  NSMutableArray * contentList;
 }
 
 - (void)showWindow:(id)sender;
 - (void)setTabViewIfNeeded:(NSTabViewItem *)tabViewItem;
 + (NSArray *)tableColumnKeys;
 - (void)setRequestHeaders:(NSDictionary *)headers;
+- (void)setResponseHeaders:(NSDictionary *)headers;
 - (void)setPostData:(NSString *)data;
+- (void)setContent:(NSString *)content;
 - (void)logRequest:(NSMutableArray *)request;
 - (void)rowClicked:(NSTableView *)aTable;
 

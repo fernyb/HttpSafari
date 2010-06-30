@@ -6,12 +6,15 @@
 //  Copyright 2010 Fernando Barajas. All rights reserved.
 //
 
+
 #import "AnalyzeWindowController.h"
+#import "HttpSafariManager.h"
 #import "HeaderViewController.h"
 #import "CookieViewController.h"
 #import "QueryViewController.h"
 #import "HttpSafariPostDataController.h"
 #import "HttpSafariContentController.h"
+
 
 
 @implementation AnalyzeWindowController
@@ -27,6 +30,8 @@
 
 - (void)awakeFromNib
 {
+  [[self window] setDelegate:self];
+  
   [tabview setDelegate:self];
   
   list = [[NSMutableArray alloc] init];
@@ -41,6 +46,7 @@
 - (void)showWindow:(id)sender
 {
   [[self window] makeKeyAndOrderFront:sender];
+  [[HttpSafariManager sharedInstance] setIsWindowOpen:YES];
   
   NSTabViewItem * tab = [tabview selectedTabViewItem];
   [self setTabViewIfNeeded:tab];
@@ -58,15 +64,15 @@
   if([[tabViewItem identifier] isEqualToString:@"headers"]) {
     if(!headerviewController) {
       headerviewController = [[HeaderViewController alloc] init];
+      [tabViewItem setView:[headerviewController view]];
     }
-    [tabViewItem setView:[headerviewController view]];
   }
   
   if([[tabViewItem identifier] isEqualToString:@"cookies"]) {
     if(!cookiesController) {
       cookiesController = [[CookieViewController alloc] init];
+      [tabViewItem setView:[cookiesController view]];
     }
-    [tabViewItem setView:[cookiesController view]];
     if(currentItem) {
       [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:[currentItem objectAtIndex:0]];
       [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
@@ -76,53 +82,63 @@
   if([[tabViewItem identifier] isEqualToString:@"query"]) {
     if(!queryController) {
       queryController = [[QueryViewController alloc] init];
+      [tabViewItem setView:[queryController view]];
     }
-    [tabViewItem setView:[queryController view]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewQuery" object:currentItem];
   }
   
   if([[tabViewItem identifier] isEqualToString:@"postdata"]) {
     if(!postdataController) {
       postdataController = [[HttpSafariPostDataController alloc] init];
+      [tabViewItem setView:[postdataController view]];
     }
-    [tabViewItem setView:[postdataController view]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariPostData" object:currentPostData];
   }
   
   if([[tabViewItem identifier] isEqualToString:@"content"]) {
     if(!contentviewController) {
       contentviewController = [[HttpSafariContentController alloc] init];
+      [tabViewItem setView:[contentviewController view]];
     }
-    [tabViewItem setView:[contentviewController view]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowContent" object:currentContent];
   }
 }
 
 
 - (void)setRequestHeaders:(NSDictionary *)headers
 {
- if(currentRequestHeaders) {
-   [currentRequestHeaders release], currentRequestHeaders = nil;
- }
-  currentRequestHeaders = [headers copy];
+  if(!requestHeadersList) {
+    requestHeadersList = [[NSMutableArray alloc] init];
+  }
+  [requestHeadersList addObject:headers];
+}
+
+- (void)setResponseHeaders:(NSDictionary *)headers
+{
+  if(!responseHeadersList) {
+    responseHeadersList = [[NSMutableArray alloc] init];
+  }
+  [responseHeadersList addObject:headers];
 }
 
 - (void)setPostData:(NSString *)data
 {
-  if(postdata) {
-    [postdata release], postdata = nil;
-  }
   if(!postDataList) {
     postDataList = [[NSMutableArray alloc] init];
   }
-  postdata = [data copy];
-  [postDataList addObject:postdata];
+  [postDataList addObject:data];
 }
 
+- (void)setContent:(NSString *)content
+{
+ if(!contentList) {
+   contentList = [[NSMutableArray alloc] init];
+ }
+  [contentList addObject:content];
+}
+     
 - (void)logRequest:(NSMutableArray *)request
 {
-  [request addObject:currentRequestHeaders];
-  [request addObject:postdata];
-  
   [list addObject:request];
   [table reloadData];
 }
@@ -154,24 +170,41 @@
   if(currentPostData) {
     [currentPostData release], currentPostData = nil;
   }
-  currentItem = [[list objectAtIndex:[aTable selectedRow]] retain];
-  currentPostData = [[postDataList objectAtIndex:([aTable selectedRow] + 1)] retain];
+  if(currentContent) {
+    [currentContent release], currentContent = nil;
+  }
+  if(currentRequestHeaders) {
+    [currentRequestHeaders release], currentRequestHeaders = nil;
+  }
   
-  NSDictionary * response = [currentItem objectAtIndex:1];
-  NSDictionary * request  = [currentItem objectAtIndex:2];
+  NSInteger selectedIndex = [aTable selectedRow];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:request];
+  currentItem     = [[list objectAtIndex:selectedIndex] retain];
+  currentPostData = [[postDataList objectAtIndex:selectedIndex] retain];
+  currentContent  = [[contentList objectAtIndex:selectedIndex] retain];
+  currentRequestHeaders = [[requestHeadersList objectAtIndex:selectedIndex] retain];
+  
+  NSDictionary * response = [responseHeadersList objectAtIndex:selectedIndex];
+  NSDictionary * cookies  = [currentItem objectAtIndex:0];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:currentRequestHeaders];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowResponseHeaders" object:response];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:[currentItem objectAtIndex:0]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:cookies];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewQuery" object:currentItem];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariPostData" object:currentPostData];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowContent" object:currentContent];
 }
 
 
+- (void)windowWillClose:(NSNotification *)notification
+{
+  [[HttpSafariManager sharedInstance] setIsWindowOpen:NO];
+}
+
 - (void)dealloc
 {
-  [currentRequestHeaders release], currentRequestHeaders = nil;
+  [currentRequestHeaders release];
   [cookiesController release];
   [headerviewController release];
   [queryController release];
@@ -180,6 +213,9 @@
   [currentItem release];
   [list release];
   [postDataList release];
+  [responseHeadersList release];
+  [requestHeadersList release];
+  
   [super dealloc];
 }
 

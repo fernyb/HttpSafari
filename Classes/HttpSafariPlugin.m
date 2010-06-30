@@ -123,7 +123,15 @@
 - (void)httpSafariDidFinishLoadingResource:(NSNotification *)aNotification
 {
   if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
-    [analyzeWindow logRequest:[aNotification object]];
+    NSMutableArray * items = [aNotification object];
+    NSString * content = [[items lastObject] retain];
+    [items removeLastObject];
+    
+    [analyzeWindow setResponseHeaders:[items objectAtIndex:1]];
+    [analyzeWindow logRequest:items];
+    
+    [analyzeWindow setContent:content];
+    [content release];
   }
 }
 

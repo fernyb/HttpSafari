@@ -15,6 +15,7 @@
 		C4140F5C11D9A668006798FF /* HttpSafariPostDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4140F5B11D9A668006798FF /* HttpSafariPostDataController.m */; };
 		C4140F5E11D9A6BE006798FF /* PostDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4140F5D11D9A6BE006798FF /* PostDataView.xib */; };
 		C4161E9411D7E53900340BD5 /* QueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4161E9311D7E53900340BD5 /* QueryViewController.m */; };
+		C417D4A611DAEA1F00002F88 /* HttpSafariManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C417D4A511DAEA1F00002F88 /* HttpSafariManager.m */; };
 		C420876E11D467C2000F9FEB /* HeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C420876D11D467C2000F9FEB /* HeaderViewController.m */; };
 		C425BD8211D851EC000176C4 /* Analyze.xib in Resources */ = {isa = PBXBuildFile; fileRef = C425BD7E11D851EC000176C4 /* Analyze.xib */; };
 		C425BD8311D851EC000176C4 /* CookieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C425BD7F11D851EC000176C4 /* CookieView.xib */; };
@@ -50,6 +51,8 @@
 		C4140F5D11D9A6BE006798FF /* PostDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDataView.xib; sourceTree = "<group>"; };
 		C4161E9211D7E53900340BD5 /* QueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryViewController.h; sourceTree = "<group>"; };
 		C4161E9311D7E53900340BD5 /* QueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryViewController.m; sourceTree = "<group>"; };
+		C417D4A411DAEA1F00002F88 /* HttpSafariManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariManager.h; sourceTree = "<group>"; };
+		C417D4A511DAEA1F00002F88 /* HttpSafariManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariManager.m; sourceTree = "<group>"; };
 		C420876C11D467C2000F9FEB /* HeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderViewController.h; sourceTree = "<group>"; };
 		C420876D11D467C2000F9FEB /* HeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderViewController.m; sourceTree = "<group>"; };
 		C425BD7E11D851EC000176C4 /* Analyze.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Analyze.xib; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				C4140F5B11D9A668006798FF /* HttpSafariPostDataController.m */,
 				C40F6FF711DA396300D37889 /* HttpSafariContentController.h */,
 				C40F6FF811DA396300D37889 /* HttpSafariContentController.m */,
+				C417D4A411DAEA1F00002F88 /* HttpSafariManager.h */,
+				C417D4A511DAEA1F00002F88 /* HttpSafariManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				C4D5E7CF11D85E0F00E06AF9 /* HttpSafariQueryParam.m in Sources */,
 				C4140F5C11D9A668006798FF /* HttpSafariPostDataController.m in Sources */,
 				C40F6FF911DA396300D37889 /* HttpSafariContentController.m in Sources */,
+				C417D4A611DAEA1F00002F88 /* HttpSafariManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
