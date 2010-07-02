@@ -13,17 +13,25 @@
 @class QueryViewController;
 @class HttpSafariPostDataController;
 @class HttpSafariContentController;
+@class HttpSafariRequestItem;
+@class WebDataSource;
 
 
 @interface AnalyzeWindowController : NSWindowController <NSWindowDelegate, NSTableViewDataSource, NSTableViewDelegate, NSTabViewDelegate> 
 {
   IBOutlet NSTableView * table;
   IBOutlet NSTabView * tabview;
+  
   NSMutableArray * list;
-  NSArray * currentItem;
+  NSInteger selectedIndex;
+  HttpSafariRequestItem * currentItem;
+  
   NSString * currentPostData;
   NSString * currentContent;
   NSDictionary * currentRequestHeaders;
+  NSDictionary * currentResponseHeaders;
+  
+  id dataResource;
   
   HeaderViewController * headerviewController;
   CookieViewController * cookiesController;
@@ -36,7 +44,10 @@
   NSMutableArray * postDataList;
   NSMutableArray * contentList;
 }
+@property(retain) id dataResource;
 
+
+- (void)webViewDidLoad:(NSNotification *)aNotification;
 - (void)showWindow:(id)sender;
 - (void)setTabViewIfNeeded:(NSTabViewItem *)tabViewItem;
 + (NSArray *)tableColumnKeys;
@@ -44,7 +55,8 @@
 - (void)setResponseHeaders:(NSDictionary *)headers;
 - (void)setPostData:(NSString *)data;
 - (void)setContent:(NSString *)content;
-- (void)logRequest:(NSMutableArray *)request;
+- (void)httpSafariShowRequest:(NSNotification *)aNotification;
+- (void)clearCurrentItemsIfNeeded;
 - (void)rowClicked:(NSTableView *)aTable;
 
 

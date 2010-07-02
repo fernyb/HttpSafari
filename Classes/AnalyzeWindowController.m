@@ -6,7 +6,7 @@
 //  Copyright 2010 Fernando Barajas. All rights reserved.
 //
 
-
+#import <WebKit/WebKit.h>
 #import "AnalyzeWindowController.h"
 #import "HttpSafariManager.h"
 #import "HeaderViewController.h"
@@ -18,6 +18,7 @@
 
 
 @implementation AnalyzeWindowController
+@synthesize dataResource;
 
 - (id) init
 {
@@ -41,7 +42,16 @@
   [table setTarget:self];
   [table setAction:@selector(rowClicked:)];
   [table reloadData];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webViewDidLoad:) name:WebViewProgressFinishedNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(httpSafariShowRequest:) name:@"httpSafariShowRequest" object:nil];
 }
+
+- (void)webViewDidLoad:(NSNotification *)aNotification
+{
+  NSLog(@"Web View Did Load");
+}
+
 
 - (void)showWindow:(id)sender
 {
@@ -136,11 +146,12 @@
  }
   [contentList addObject:content];
 }
-     
-- (void)logRequest:(NSMutableArray *)request
+
+
+- (void)httpSafariShowRequest:(NSNotification *)aNotification
 {
-  [list addObject:request];
-  [table reloadData];
+ list = [[HttpSafariManager sharedInstance] requests];
+ [table reloadData];
 }
 
 
@@ -158,42 +169,89 @@
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-  NSDictionary * item = [[list objectAtIndex:rowIndex] objectAtIndex:0];
-  return [item objectForKey:[aTableColumn identifier]]; 
+  HttpSafariRequestItem * item = [list objectAtIndex:rowIndex];
+  NSString * identifier = [aTableColumn identifier];
+  
+  if([identifier isEqualToString:@"time"]) {
+    return [item performSelector:@selector(requestTime)];
+  }
+  if([identifier isEqualToString:@"method"]) {
+    return [item performSelector:@selector(method)];
+  }
+  if([identifier isEqualToString:@"url"]) {
+    return [item performSelector:@selector(url)];
+  }
+  if([identifier isEqualToString:@"type"]) {
+    return [item performSelector:@selector(contentType)];
+  }
+  return @"";
+}
+
+- (void)clearCurrentItemsIfNeeded
+{
+  if(currentItem) [currentItem release], currentItem = nil;
+  if(currentPostData) [currentPostData release], currentPostData = nil;
+  if(currentContent) [currentContent release], currentContent = nil;
+  if(currentRequestHeaders) [currentRequestHeaders release], currentRequestHeaders = nil;
+  if(currentResponseHeaders) [currentResponseHeaders release], currentResponseHeaders = nil;
 }
 
 - (void)rowClicked:(NSTableView *)aTable
 {
-  if(currentItem) {
-    [currentItem release], currentItem = nil;
-  }
-  if(currentPostData) {
-    [currentPostData release], currentPostData = nil;
-  }
-  if(currentContent) {
-    [currentContent release], currentContent = nil;
-  }
-  if(currentRequestHeaders) {
-    [currentRequestHeaders release], currentRequestHeaders = nil;
-  }
+  [self clearCurrentItemsIfNeeded];
+  selectedIndex = [aTable selectedRow];
+  NSLog(@"Selected Index: %lu, Count: %lu", selectedIndex, [list count]);
   
-  NSInteger selectedIndex = [aTable selectedRow];
+  currentItem = [[list objectAtIndex:selectedIndex] retain];
   
-  currentItem     = [[list objectAtIndex:selectedIndex] retain];
+  NSArray * resources = [[HttpSafariManager sharedInstance] resources];
+  WebResource * resource = [resources objectAtIndex:selectedIndex];
+  NSLog(@"WebResource: %@", resource);
+  
+  return;
+  
+  selectedIndex = [aTable selectedRow];
+  currentItem = [[list objectAtIndex:selectedIndex] retain];
+  
   currentPostData = [[postDataList objectAtIndex:selectedIndex] retain];
-  currentContent  = [[contentList objectAtIndex:selectedIndex] retain];
+  //currentContent  = [[contentList objectAtIndex:selectedIndex] retain];
   currentRequestHeaders = [[requestHeadersList objectAtIndex:selectedIndex] retain];
+  currentResponseHeaders = [[responseHeadersList objectAtIndex:selectedIndex] retain];
   
-  NSDictionary * response = [responseHeadersList objectAtIndex:selectedIndex];
-  NSDictionary * cookies  = [currentItem objectAtIndex:0];
+  //NSDictionary * cookies  = [currentItem objectAtIndex:0];
+  //[[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:cookies];
+  
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowRequestHeaders" object:currentRequestHeaders];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowResponseHeaders" object:response];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariRequestwCookies" object:cookies];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowResponseHeaders" object:currentResponseHeaders];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariResponseCookies" object:currentItem];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariViewQuery" object:currentItem];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariPostData" object:currentPostData];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowContent" object:currentContent];
+  //[[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowContent" object:currentContent];
+  
+  // ------
+  NSDictionary * item = [currentItem objectAtIndex:0];
+  
+  if(dataResource) {
+    WebResource * resource = [dataResource subresourceForURL:[NSURL URLWithString:[item objectForKey:@"url"]]];
+    NSLog(@"Resource: %@", resource);
+    NSLog(@"Frame Name: %@", [resource frameName]);
+    NSLog(@"Mime: %@", [resource MIMEType]);
+    
+    currentContent = [[NSString alloc] initWithData:[resource data] encoding:NSUTF8StringEncoding];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowContent" object:currentContent];
+   
+//    if([[resource MIMEType] isEqualToString:@"image/jpeg"]) {
+//      NSImage * image = [[NSImage alloc] initWithData:[resource data]];
+//      NSString * cdata = [[NSString alloc] initWithData:[image TIFFRepresentation] encoding:NSUTF8StringEncoding];
+//      
+//      [[NSNotificationCenter defaultCenter] postNotificationName:@"kHttpSafariShowContent" object:cdata];
+//      [image release];
+//      [cdata autorelease];
+//    }
+  }
+
 }
 
 
@@ -204,6 +262,7 @@
 
 - (void)dealloc
 {
+  [currentResponseHeaders release];
   [currentRequestHeaders release];
   [cookiesController release];
   [headerviewController release];

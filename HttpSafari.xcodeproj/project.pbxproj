@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		C406540611DE25A90034AE29 /* NSString+DateFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = C406540511DE25A90034AE29 /* NSString+DateFormat.m */; };
 		C40F6FF311DA390E00D37889 /* ContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40F6FF211DA390E00D37889 /* ContentView.xib */; };
 		C40F6FF911DA396300D37889 /* HttpSafariContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = C40F6FF811DA396300D37889 /* HttpSafariContentController.m */; };
 		C410827C11D0795A003C48E3 /* AnalyzeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C410827B11D0795A003C48E3 /* AnalyzeWindowController.m */; };
@@ -30,6 +31,7 @@
 		C4A2317C11CD26F30099F6C9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A2317B11CD26F30099F6C9 /* WebKit.framework */; };
 		C4D5E7A311D8577700E06AF9 /* NSString+URIQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7A211D8577700E06AF9 /* NSString+URIQuery.m */; };
 		C4D5E7CF11D85E0F00E06AF9 /* HttpSafariQueryParam.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D5E7CE11D85E0F00E06AF9 /* HttpSafariQueryParam.m */; };
+		C4F0518711DD9FA4002D74CF /* HttpSafariRequestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F0518611DD9FA4002D74CF /* HttpSafariRequestItem.m */; };
 		C4FD16BD11D6680D003192D8 /* HttpSafariHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD16BC11D6680D003192D8 /* HttpSafariHeader.m */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		32DBCF630370AF2F00C91783 /* HttpSafari_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafari_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* HttpSafari.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HttpSafari.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C406540411DE25A90034AE29 /* NSString+DateFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DateFormat.h"; sourceTree = "<group>"; };
+		C406540511DE25A90034AE29 /* NSString+DateFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DateFormat.m"; sourceTree = "<group>"; };
 		C40F6FF211DA390E00D37889 /* ContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentView.xib; sourceTree = "<group>"; };
 		C40F6FF711DA396300D37889 /* HttpSafariContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariContentController.h; sourceTree = "<group>"; };
 		C40F6FF811DA396300D37889 /* HttpSafariContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariContentController.m; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 		C4D5E7A211D8577700E06AF9 /* NSString+URIQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URIQuery.m"; sourceTree = "<group>"; };
 		C4D5E7CD11D85E0F00E06AF9 /* HttpSafariQueryParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariQueryParam.h; sourceTree = "<group>"; };
 		C4D5E7CE11D85E0F00E06AF9 /* HttpSafariQueryParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariQueryParam.m; sourceTree = "<group>"; };
+		C4F0518511DD9FA4002D74CF /* HttpSafariRequestItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariRequestItem.h; sourceTree = "<group>"; };
+		C4F0518611DD9FA4002D74CF /* HttpSafariRequestItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariRequestItem.m; sourceTree = "<group>"; };
 		C4FD16BB11D6680D003192D8 /* HttpSafariHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSafariHeader.h; sourceTree = "<group>"; };
 		C4FD16BC11D6680D003192D8 /* HttpSafariHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSafariHeader.m; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -208,6 +214,10 @@
 				C40F6FF811DA396300D37889 /* HttpSafariContentController.m */,
 				C417D4A411DAEA1F00002F88 /* HttpSafariManager.h */,
 				C417D4A511DAEA1F00002F88 /* HttpSafariManager.m */,
+				C4F0518511DD9FA4002D74CF /* HttpSafariRequestItem.h */,
+				C4F0518611DD9FA4002D74CF /* HttpSafariRequestItem.m */,
+				C406540411DE25A90034AE29 /* NSString+DateFormat.h */,
+				C406540511DE25A90034AE29 /* NSString+DateFormat.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -287,6 +297,8 @@
 				C4140F5C11D9A668006798FF /* HttpSafariPostDataController.m in Sources */,
 				C40F6FF911DA396300D37889 /* HttpSafariContentController.m in Sources */,
 				C417D4A611DAEA1F00002F88 /* HttpSafariManager.m in Sources */,
+				C4F0518711DD9FA4002D74CF /* HttpSafariRequestItem.m in Sources */,
+				C406540611DE25A90034AE29 /* NSString+DateFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

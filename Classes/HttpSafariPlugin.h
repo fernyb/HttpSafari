@@ -21,5 +21,6 @@
 - (void)_openWindow:(id)sender;
 - (void)httpSafariWillSendRequest:(NSNotification *)aNotification;
 - (void)httpSafariDidFinishLoadingResource:(NSNotification *)aNotification;
+- (void)httpSafariResources:(NSNotification *)aNotification;
 
 @end

@@ -39,7 +39,7 @@
   self = [super init];
   if (self != nil) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(httpSafariWillSendRequest:) name:@"kHttpSafariWillSendRequest" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(httpSafariDidFinishLoadingResource:) name:@"kHttpSafariDidFinishLoadingResource" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(httpSafariResources:) name:@"httpSafariDidFinishLoadingFromDataSource" object:nil];
   }
   return self;
 }
@@ -123,18 +123,26 @@
 - (void)httpSafariDidFinishLoadingResource:(NSNotification *)aNotification
 {
   if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
-    NSMutableArray * items = [aNotification object];
-    NSString * content = [[items lastObject] retain];
-    [items removeLastObject];
-    
-    [analyzeWindow setResponseHeaders:[items objectAtIndex:1]];
-    [analyzeWindow logRequest:items];
-    
-    [analyzeWindow setContent:content];
-    [content release];
+//    NSMutableArray * items = [aNotification object];
+//    NSString * content = [[items lastObject] retain];
+//    [items removeLastObject];
+//    
+//    [analyzeWindow setResponseHeaders:[items objectAtIndex:1]];
+//    [analyzeWindow logRequest:items];
+//    
+//    [analyzeWindow setContent:content];
+//    [content release];
   }
 }
 
+- (void)httpSafariResources:(NSNotification *)aNotification
+{
+  if(analyzeWindow && [[analyzeWindow window] isVisible] == YES) {
+    //NSMutableArray * items = [aNotification object];
+    //NSDictionary * responseHeaders = [items objectAtIndex:1];
+    //[analyzeWindow setDataResource:[aNotification object]];
+  }
+}
 
 - (void)dealloc
 {
