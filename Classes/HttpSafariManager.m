@@ -83,9 +83,13 @@
   if(!requestHeadersList) {
     requestHeadersList = [[NSMutableArray alloc] init];
   }
-  NSDictionary * req = [request copy];
-  [requestHeadersList addObject:req];
-  [req release];
+  if(request) {
+    //NSDictionary * req = [request copy];
+    [requestHeadersList addObject:request];
+    //[req release];
+  } else {
+    [requestHeadersList addObject:[NSDictionary dictionary]];
+  }
 }
 
 - (void)addResponseHeaders:(NSDictionary *)response
@@ -93,9 +97,13 @@
   if(!responseHeadersList) {
     responseHeadersList = [[NSMutableArray alloc] init];
   }
-  NSDictionary * res = [response copy];
-  [responseHeadersList addObject:res];
-  [res release];
+  if(response) {
+    //SDictionary * res = [response copy];
+    [responseHeadersList addObject:response];
+    //[res release];
+  } else {
+    [responseHeadersList addObject:[NSDictionary dictionary]];
+  }
 }
 
 - (void)addResourceData:(NSData *)data
@@ -115,7 +123,11 @@
   if(!responseCookieList) {
     responseCookieList = [[NSMutableArray alloc] init];
   }
-  [responseCookieList addObject:kookies];
+  if(kookies) {
+    [responseCookieList addObject:kookies];
+  } else {
+    [responseCookieList addObject:[NSArray array]];
+  }
 }
 
 - (void)addRequestCookies:(NSArray *)kookies
@@ -123,7 +135,11 @@
   if(!requestCookieList) {
     requestCookieList = [[NSMutableArray alloc] init];
   }
-  [requestCookieList addObject:kookies];
+  if(kookies) {
+    [requestCookieList addObject:kookies];
+  } else {
+    [requestCookieList addObject:[NSArray array]];
+  }
 }
 
 - (void)addParams:(NSDictionary *)params
@@ -131,7 +147,11 @@
   if(!requestParamsList) {
     requestParamsList = [[NSMutableArray alloc] init];
   }
-  [requestParamsList addObject:params];
+  if(params) {
+    [requestParamsList addObject:params];
+  } else {
+    [requestParamsList addObject:[NSDictionary dictionary]];
+  }
 }
 
 - (void)addPostData:(NSData *)data

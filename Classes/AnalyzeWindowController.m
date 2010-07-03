@@ -210,6 +210,7 @@
   selectedIndex = [aTable selectedRow];
   currentItem = [[list objectAtIndex:selectedIndex] retain];
   
+  
   currentRequestHeaders  = [[[HttpSafariManager sharedInstance] requestHeadersList] objectAtIndex:selectedIndex];
   [currentRequestHeaders retain];
   

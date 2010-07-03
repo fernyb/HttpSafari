@@ -24,16 +24,59 @@
   NSURLRequest * req = [self httpSafari_webView:sender resource:identifier willSendRequest:request redirectResponse:redirectResponse fromDataSource:dataSource];
   if(req && [[HttpSafariManager sharedInstance] isWindowOpen]) {
     if([[[identifier URL] absoluteString] isEqualToString:@"about:blank"] == NO) {
-    //
-    // TODO: Display the POST Requests
-    //
+
+    if([[req HTTPMethod] isEqualToString:@"POST"]) {
+      NSHTTPURLResponse * res = (NSHTTPURLResponse *)[dataSource response];
       
-    NSData * postdata = [req HTTPBody];
-    NSString * postd = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
-    NSLog(@"%@", [identifier URL]);
-    [postd release];
+      NSString * dateString = [NSString date];
+      NSString * url = [[identifier URL] absoluteString];
+      WebResource * source = [dataSource subresourceForURL:[identifier URL]];
+     
+      NSString * mimetype;
+      NSData * resourceData;
+      if(source) {
+        resourceData = [source data];
+        mimetype = [source MIMEType];
+      } else {
+        resourceData = [dataSource data];
+        mimetype = [[dataSource response] MIMEType];
+      }
+      
+      HttpSafariRequestItem * item = [[HttpSafariRequestItem alloc] init];
+      [item setRequestTime:dateString];
+      [item setMethod:[req HTTPMethod]];
+      [item setUrl:url];
+      [item setContentType:mimetype];
+      
+      NSData * postdata = [req HTTPBody];
+      NSString * postd = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+      [[HttpSafariManager sharedInstance] addPostData:postdata];
+      [postd release];
+      
+      [[HttpSafariManager sharedInstance] addRequest:item];
+      [[HttpSafariManager sharedInstance] addResource:source];
+      [[HttpSafariManager sharedInstance] addRequestHeaders:[req allHTTPHeaderFields]];
+      [[HttpSafariManager sharedInstance] addResponseHeaders:[res allHeaderFields]];
+      [[HttpSafariManager sharedInstance] addResourceData:resourceData];
+      
+      NSArray * resCookies;
+      if([res allHeaderFields]) {
+        resCookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[res allHeaderFields] forURL:[identifier URL]];
+      } else {
+        resCookies = nil;
+      }
+      [[HttpSafariManager sharedInstance] addResponseCookies:resCookies];
+      
+      NSArray * reqCookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[identifier URL]];
+      [[HttpSafariManager sharedInstance] addRequestCookies:reqCookies];
+      
+      NSDictionary * params = [[[identifier URL] absoluteString] toParams];
+      [[HttpSafariManager sharedInstance] addParams:params];
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"httpSafariShowRequest" object:nil];
+      [item release];
+    }
     
-    [[HttpSafariManager sharedInstance] addPostData:postdata];
     }
   }
   
@@ -85,6 +128,11 @@
       
       NSDictionary * params = [[[identifier URL] absoluteString] toParams];
       [[HttpSafariManager sharedInstance] addParams:params];
+      
+      NSData * postdata = [req HTTPBody];
+      NSString * postd = [[NSString alloc] initWithData:postdata encoding:NSUTF8StringEncoding];
+      [[HttpSafariManager sharedInstance] addPostData:postdata];
+      [postd release];
       
       [item release];
       [[NSNotificationCenter defaultCenter] postNotificationName:@"httpSafariShowRequest" object:nil];
