@@ -24,13 +24,14 @@
 - (void)awakeFromNib
 {
   [textview setEditable:NO];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showContent:) name:@"kHttpSafariShowContent" object:nil]; 
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRequestData:) name:@"kHttpSafariShowRequestData" object:nil]; 
 }
 
-- (void)showContent:(NSNotification *)aNotification
+- (void)showRequestData:(NSNotification *)aNotification
 {
   if([aNotification object]) {
-    [textview setString:[aNotification object]];
+    // [aNotification object]
+    [textview setString:@"Display DATA"];
   } else {
     [textview setString:@""];
   }

@@ -10,7 +10,7 @@
 
 @interface NSString (URIQuery)
 
-- (NSDictionary *)queryparams;
+- (NSDictionary *)toParams;
 
 @end
 

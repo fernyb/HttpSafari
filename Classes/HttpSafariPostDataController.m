@@ -34,8 +34,13 @@
   [[formdataArrayController content] removeAllObjects];
   [formdata removeAllObjects];
   
-  NSString * qstring = [NSString stringWithFormat:@"?%@", [aNotfication object]];
-  NSDictionary * params = [qstring queryparams];
+  if([[aNotfication object] bytes] <= 0) {
+    return;
+  }
+  
+  NSString * qstring = [NSString stringWithFormat:@"?%@", [NSString stringWithCString:[[aNotfication object] bytes] encoding:NSASCIIStringEncoding]];
+
+  NSDictionary * params = [qstring toParams];
   
   for(NSString * k in [params allKeys]) {
     HttpSafariQueryParam * param = [[HttpSafariQueryParam alloc] init];

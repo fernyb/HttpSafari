@@ -20,9 +20,25 @@
   NSMutableArray * dataSourceList;
   NSMutableArray * requestList;
   NSMutableArray * resourceList;
+  
+  NSMutableArray * requestHeadersList;
+  NSMutableArray * responseHeadersList;
+  NSMutableArray * resourceDataList;
+  NSMutableArray * responseCookieList;
+  NSMutableArray * requestCookieList;
+  NSMutableArray * requestParamsList;
+  NSMutableArray * requestPostDataList;
 }
 
 @property(assign) BOOL isWindowOpen;
+@property(readonly) NSMutableArray * requestHeadersList;
+@property(readonly) NSMutableArray * responseHeadersList;
+@property(readonly) NSMutableArray * resourceDataList;
+@property(readonly) NSMutableArray * responseCookieList;
+@property(readonly) NSMutableArray * requestCookieList;
+@property(readonly) NSMutableArray * requestParamsList;
+@property(readonly) NSMutableArray * requestPostDataList;
+
 
 + (HttpSafariManager *)sharedInstance;
 
@@ -34,5 +50,13 @@
 
 - (void)addResource:(WebResource *)resource;
 - (NSMutableArray *)resources;
+
+- (void)addRequestHeaders:(NSDictionary *)request;
+- (void)addResponseHeaders:(NSDictionary *)response;
+- (void)addResourceData:(NSData *)data;
+- (void)addResponseCookies:(NSArray *)kookies;
+- (void)addRequestCookies:(NSArray *)kookies;
+- (void)addParams:(NSDictionary *)params;
+- (void)addPostData:(NSData *)data;
 
 @end

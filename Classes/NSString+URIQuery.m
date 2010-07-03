@@ -11,7 +11,7 @@
 
 @implementation NSString (URIQuery)
 
-- (NSDictionary *)queryparams
+- (NSDictionary *)toParams
 {
   NSArray * parts = [self componentsSeparatedByString:@"?"];
   if([parts count] != 2) {

@@ -26,10 +26,14 @@
   NSInteger selectedIndex;
   HttpSafariRequestItem * currentItem;
   
-  NSString * currentPostData;
+  NSData * currentPostData;
   NSString * currentContent;
   NSDictionary * currentRequestHeaders;
   NSDictionary * currentResponseHeaders;
+  NSArray * currentResponseCookies;
+  NSArray * currentRequestCookies;
+  NSDictionary * currentRequestParams;
+  NSData * currentRequestData;
   
   id dataResource;
   

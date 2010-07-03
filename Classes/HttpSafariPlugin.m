@@ -22,6 +22,7 @@
 {
   HttpSafariPlugin * thePlugin = [[self class] sharedInstance];
   [thePlugin swizzle];
+  [thePlugin installMenu];
 }
 
 
@@ -53,7 +54,6 @@
   
   if (methodAdded) {
     NSLog(@"LoadProgressMonitor now has new method");
-    [self installMenu];
   }
   
   methodAdded = [self swizzleClass:NSClassFromString(@"LoadProgressMonitor") 

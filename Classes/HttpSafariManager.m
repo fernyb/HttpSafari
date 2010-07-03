@@ -13,6 +13,13 @@
 
 @implementation HttpSafariManager
 @synthesize isWindowOpen;
+@synthesize requestHeadersList;
+@synthesize responseHeadersList;
+@synthesize resourceDataList;
+@synthesize responseCookieList;
+@synthesize requestCookieList;
+@synthesize requestParamsList;
+@synthesize requestPostDataList;
 
 
 + (HttpSafariManager *)sharedInstance
@@ -69,6 +76,74 @@
 - (NSMutableArray *)resources
 {
   return resourceList;
+}
+
+- (void)addRequestHeaders:(NSDictionary *)request
+{
+  if(!requestHeadersList) {
+    requestHeadersList = [[NSMutableArray alloc] init];
+  }
+  NSDictionary * req = [request copy];
+  [requestHeadersList addObject:req];
+  [req release];
+}
+
+- (void)addResponseHeaders:(NSDictionary *)response
+{
+  if(!responseHeadersList) {
+    responseHeadersList = [[NSMutableArray alloc] init];
+  }
+  NSDictionary * res = [response copy];
+  [responseHeadersList addObject:res];
+  [res release];
+}
+
+- (void)addResourceData:(NSData *)data
+{
+  if(!resourceDataList) {
+    resourceDataList = [[NSMutableArray alloc] init];
+  }
+  if(data) {
+    [resourceDataList addObject:data];
+  } else {
+    [resourceDataList addObject:[NSData data]];
+  }
+}
+
+- (void)addResponseCookies:(NSArray *)kookies
+{
+  if(!responseCookieList) {
+    responseCookieList = [[NSMutableArray alloc] init];
+  }
+  [responseCookieList addObject:kookies];
+}
+
+- (void)addRequestCookies:(NSArray *)kookies
+{
+  if(!requestCookieList) {
+    requestCookieList = [[NSMutableArray alloc] init];
+  }
+  [requestCookieList addObject:kookies];
+}
+
+- (void)addParams:(NSDictionary *)params
+{
+  if(!requestParamsList) {
+    requestParamsList = [[NSMutableArray alloc] init];
+  }
+  [requestParamsList addObject:params];
+}
+
+- (void)addPostData:(NSData *)data
+{
+  if(!requestPostDataList) {
+    requestPostDataList = [[NSMutableArray alloc] init];
+  }
+  if(data) {
+    [requestPostDataList addObject:data];
+  } else {
+    [requestPostDataList addObject:[NSData data]];
+  }
 }
 
 @end

@@ -26,18 +26,16 @@
 
 - (void)awakeFromNib
 {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showQuery:) name:@"kHttpSafariViewQuery" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showQueryParams:) name:@"kHttpSafariViewQuery" object:nil];
 }
 
-- (void)showQuery:(NSNotification *)aNotification
+- (void)showQueryParams:(NSNotification *)aNotification
 {
   [[queryParamsArrayController content] removeAllObjects];
   [queryParams removeAllObjects];
-  
-  NSString * url = [[[aNotification object] objectAtIndex:0] objectForKey:@"url"];
-  NSDictionary * params = [url queryparams];
-  
-  for(NSString * k in [params allKeys]) {
+ 
+  NSDictionary * params = [aNotification object];
+  for(NSString * k in params) {
     HttpSafariQueryParam * param = [[HttpSafariQueryParam alloc] init];
     [param setName:k];
     [param setValue:[params objectForKey:k]];

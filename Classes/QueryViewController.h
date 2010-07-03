@@ -16,6 +16,6 @@
 }
 @property(readonly, getter=view) NSView * queryview;
 
-- (void)showQuery:(NSNotification *)aNotification;
+- (void)showQueryParams:(NSNotification *)aNotification;
 
 @end

@@ -21,7 +21,7 @@
 }
 @property(readonly, getter=view) NSView * cookieview;
 
-- (void)showCookies:(NSNotification *)aNotification;
+- (void)showRequestCookies:(NSNotification *)aNotification;
 - (void)showResponseCookies:(NSNotification *)aNotification;
 
 @end

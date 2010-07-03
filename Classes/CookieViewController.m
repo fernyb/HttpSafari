@@ -25,19 +25,16 @@
 
 - (void)awakeFromNib
 {
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showCookies:) name:@"kHttpSafariRequestwCookies" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showRequestCookies:) name:@"kHttpSafariRequestCookies" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showResponseCookies:) name:@"kHttpSafariResponseCookies" object:nil];
 }
 
-- (void)showCookies:(NSNotification *)aNotification
+- (void)showRequestCookies:(NSNotification *)aNotification
 {
   [[cookiesSentArrayController content] removeAllObjects];
   [cookiesSent removeAllObjects];
-   
-  NSDictionary * request = [aNotification object];
-  NSArray * availableCookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:[request objectForKey:@"url"]]];
-  
-  for(NSHTTPCookie * cookie in availableCookies) {
+ 
+  for(NSHTTPCookie * cookie in [aNotification object]) {
     HttpSafariCookie * kookie = [[HttpSafariCookie alloc] init];
     [kookie setName:[cookie name]];
     [kookie setValue:[cookie value]];
@@ -62,12 +59,8 @@
 {
   [[cookiesReceivedArrayController content] removeAllObjects];
   [cookiesReceived removeAllObjects];
-  
-  NSString * url = [[[aNotification object] objectAtIndex:0] objectForKey:@"url"];
-  NSDictionary * responseHeaders = [[aNotification object] objectAtIndex:1];
-
-  NSArray * cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:responseHeaders forURL:[NSURL URLWithString:url]];
-  for(NSHTTPCookie * cookie in cookies) {
+ 
+  for(NSHTTPCookie * cookie in [aNotification object]) {
     HttpSafariCookie * kookie = [[HttpSafariCookie alloc] init];
     [kookie setName:[cookie name]];
     [kookie setValue:[cookie value]];

@@ -15,6 +15,6 @@
 }
 @property(readonly, getter=view) NSView  * contentview;
 
-- (void)showContent:(NSNotification *)aNotification;
+- (void)showRequestData:(NSNotification *)aNotification;
 
 @end
